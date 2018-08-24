@@ -5,7 +5,7 @@ Android 本地网络小说爬虫，基于 jsoup 与 xpath，通过模版解析�
 - [支持书源](#支持书源)
 - [模版示例](#模版示例)
 - [调用方式](#调用方式)
-- [ScreenShot](#ScreenShot)
+- [ScreenShot](#screenshot)
 
 ## 支持书源
 
