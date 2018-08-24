@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+
+    buildTypes {
+        release {
+            postprocessing {
+                removeUnusedCode false
+                removeUnusedResources false
+                obfuscate false
+                optimizeCode false
+                proguardFile 'proguard-rules.pro'
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["kotlin"]
+
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava:1.1.5'
+    compile 'com.trello:rxlifecycle:0.3.0'
+    compile 'com.trello:rxlifecycle-components:0.3.0'
+    //    https://github.com/drakeet/MaterialDialog
+    compile 'me.drakeet.materialdialog:library:1.3.1'
+}

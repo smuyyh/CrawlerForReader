@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CornerImageView">
+        <attr name="shape" format="enum">
+            <enum name="round" value="1" />
+            <enum name="circle" value="2" />
+        </attr>
+        <attr name="radius" format="dimension" />
+        <attr name="stroke_width" format="dimension" />
+        <attr name="stroke_color" format="color|reference" />
+    </declare-styleable>
+
+</resources>

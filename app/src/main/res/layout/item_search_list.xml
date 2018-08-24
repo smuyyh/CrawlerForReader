@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/app_spacing_3">
+
+    <com.qy.reader.common.widgets.CornerImageView
+        android:id="@+id/iv_search_item_cover"
+        android:layout_width="72dp"
+        android:layout_height="96dp"
+        android:src="@drawable/ic_default_cover"
+        app:radius="3dp"
+        app:shape="round" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/app_spacing_3">
+
+        <TextView
+            android:id="@+id/tv_search_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="大唐荣耀"
+            android:textColor="@color/main_text_color"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/tv_search_item_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_spacing_2"
+            android:drawableLeft="@drawable/ic_default_author_left"
+            android:drawablePadding="@dimen/app_spacing_1"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:text="作者："
+            android:textSize="@dimen/txt_size_little" />
+
+        <TextView
+            android:id="@+id/tv_search_item_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_spacing_2"
+            android:drawablePadding="@dimen/app_spacing_1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:lineSpacingMultiplier="1.1"
+            android:maxLines="2"
+            android:text="唐肃宗时期，皇室内忧外患。皇子李倓受皇后陷害死去，皇长子李俶悲痛不已。朝堂之上，张皇后和史思明中伤李俶，导致李俶兵权被夺。为了振作李俶，独"
+            android:textSize="@dimen/txt_size_little" />
+
+        <TextView
+            android:id="@+id/tv_search_item_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_spacing_2"
+            android:drawableLeft="@drawable/ic_default_source_left"
+            android:drawablePadding="@dimen/app_spacing_1"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:text="来源(3)：起点 | 猎文网 | 追书网"
+            android:textSize="@dimen/txt_size_little" />
+
+    </LinearLayout>
+
+</LinearLayout>

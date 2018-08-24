@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#26ADDA</color>
+
+    <color name="colorControlNormal">#999999</color>
+    <color name="colorControlActivated">#787878</color>
+    <color name="colorControlActivatedDark">#585858</color>
+    <color name="colorWindowBg">#F3F3F3</color>
+    <color name="colorLine">#CCCCCC</color>
+
+    <color name="main_text_color">#333333</color>
+    <color name="main_text_color_focus">#40c6bf</color>
+
+    <color name="second_text_color">#666666</color>
+
+    <color name="third_text_color">#999999</color>
+
+</resources>

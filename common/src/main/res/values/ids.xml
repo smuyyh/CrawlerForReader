@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="tab_content_layout_id" type="id" />
+
+    <item name="sneaker_main_layout" type="id" />
+</resources>

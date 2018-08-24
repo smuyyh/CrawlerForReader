@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_tool_bar" />
+
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/app_spacing_3">
+
+                    <com.qy.reader.common.widgets.CornerImageView
+                        android:id="@+id/iv_book_cover"
+                        android:layout_width="72dp"
+                        android:layout_height="96dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_default_cover"
+                        app:radius="3dp"
+                        app:shape="round" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="96dp"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/app_spacing_3">
+
+                        <TextView
+                            android:id="@+id/tv_book_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="大唐荣耀"
+                            android:textColor="@color/main_text_color"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/tv_book_author"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/app_spacing_2"
+                            android:drawableLeft="@drawable/ic_default_author_left"
+                            android:drawablePadding="@dimen/app_spacing_1"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="作者："
+                            android:textSize="@dimen/txt_size_little" />
+
+                        <TextView
+                            android:id="@+id/tv_book_newest_chapter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/app_spacing_2"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/app_spacing_1"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:lineSpacingMultiplier="1.1"
+                            android:maxLines="1"
+                            android:text="最新章节："
+                            android:textSize="@dimen/txt_size_little" />
+
+                        <TextView
+                            android:id="@+id/tv_book_source"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/ic_default_source_left"
+                            android:drawablePadding="@dimen/app_spacing_1"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="来源(3)：起点"
+                            android:textSize="@dimen/txt_size_little" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_book_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/app_spacing_2"
+                    android:drawablePadding="@dimen/app_spacing_1"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:lineSpacingMultiplier="1.1"
+                    android:padding="@dimen/app_spacing_3"
+                    android:text="简介：相传，远古时期的龙祭大陆，是太古神龙的天下，时至今日，神龙灭绝殆尽。
+龙辰，原本是一无是处的纨绔子弟，却因为父亲所遗留的神秘玉佩，吞食远古神龙之传承精血，以亿万龙族之血脉，坐拥美女，鏖战天下！
+破龙脉，凝神丹，武动天河星辰，身渡轮回万劫，任你修为通天彻地，实力霸绝寰宇，我自有远古十大祖龙精血，吞食宇宙天地，掌控无尽生灵，龙之传人，万古长存！"
+                    android:textSize="@dimen/txt_size_little" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_line_normal"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/colorLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="@dimen/app_spacing_3"
+                        android:paddingLeft="@dimen/app_spacing_4"
+                        android:paddingTop="@dimen/app_spacing_3"
+                        android:text="目录"
+                        android:textColor="@color/main_text_color"
+                        android:textSize="@dimen/txt_size_normal" />
+
+                    <TextView
+                        android:id="@+id/tv_order_by"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:drawablePadding="@dimen/app_spacing_1"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/app_spacing_3"
+                        android:text="正序"
+                        android:textColor="@color/colorControlNormal"
+                        android:textSize="@dimen/txt_size_normal" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_line_normal"
+                    android:background="@color/colorLine" />
+
+            </LinearLayout>
+
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_search_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fastScrollEnabled="true"
+            app:fastScrollHorizontalThumbDrawable="@drawable/fast_scroll_thumb_selector"
+            app:fastScrollHorizontalTrackDrawable="@drawable/fast_scroll_line_selector"
+            app:fastScrollVerticalThumbDrawable="@drawable/fast_scroll_thumb_selector"
+            app:fastScrollVerticalTrackDrawable="@drawable/fast_scroll_line_selector"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </android.support.design.widget.CoordinatorLayout>
+</LinearLayout>
+

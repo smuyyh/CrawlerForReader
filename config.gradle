@@ -1,0 +1,20 @@
+ext {
+
+    android = [compileSdkVersion: 26,
+               buildToolsVersion: "27.0.1",
+               applicationId    : "com.qy.reader",
+               minSdkVersion    : 14,
+               targetSdkVersion : 26,
+               versionCode      : 100,
+               versionName      : "1.0.0"]
+
+    dependencies = ["appcompat-v7"       : "com.android.support:appcompat-v7:27.0.2",
+                    "design"             : "com.android.support:design:27.0.2",
+                    "recyclerview-v7"    : "com.android.support:recyclerview-v7:27.0.2",
+                    "support-annotation" : "com.android.support:support-annotations:27.0.2",
+                    "kotlin"             : "org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.10",
+                    "gson"               : "com.google.code.gson:gson:2.8.2",
+                    "glide"              : "com.github.bumptech.glide:glide:3.7.0",
+                    "easy-adapter"       : "com.yuyh.easyadapter:library:1.1.5"
+    ]
+}

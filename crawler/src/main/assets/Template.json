@@ -1,0 +1,344 @@
+[
+  {
+    "id": 1,
+    "search": {
+      "charset": "UTF-8",
+      "xpath": "//div[@class='result-item result-game-item']",
+      "coverXpath": "//div[@class='result-game-item-pic']//a//img/@src",
+      "titleXpath": "//div[@class='result-game-item-detail']//h3//a/@title",
+      "linkXpath": "//div[@class='result-game-item-detail']//h3//a/@href",
+      "authorXpath": "//div[@class='result-game-item-detail']//div[@class='result-game-item-info']//p[1]/span[2]/text()",
+      "descXpath": "//div[@class='result-game-item-detail']//p[@class='result-game-item-desc']/text()"
+    },
+    "catalog": {
+      "xpath": "//div[@id=list]//dl//dd",
+      "titleXpath": "//a/text()",
+      "linkXpath": "//a/@href"
+    },
+    "content": {
+      "xpath": "//div[@id='content']/text()"
+    }
+  },
+  {
+    "id": 2,
+    "search": {
+      "charset": "UTF-8",
+      "xpath": "//div[@class='result-item result-game-item']",
+      "coverXpath": "//div[@class='result-game-item-pic']//a//img/@src",
+      "titleXpath": "//div[@class='result-game-item-detail']//h3//a/@title",
+      "linkXpath": "//div[@class='result-game-item-detail']//h3//a/@href",
+      "authorXpath": "//div[@class='result-game-item-detail']//div[@class='result-game-item-info']//p[1]/span[2]/text()",
+      "descXpath": "//div[@class='result-game-item-detail']//p[@class='result-game-item-desc']/text()"
+    },
+    "catalog": {
+      "xpath": "//div[@id=list]//dl//dd",
+      "titleXpath": "//a/text()",
+      "linkXpath": "//a/@href"
+    },
+    "content": {
+      "xpath": "//div[@id='content']/text()"
+    }
+  },
+  {
+    "id": 3,
+    "search": {
+      "charset": "UTF-8",
+      "xpath": "//div[@class='result-item result-game-item']",
+      "coverXpath": "//div[@class='result-game-item-pic']//a//img/@src",
+      "titleXpath": "//div[@class='result-game-item-detail']//h3//a/@title",
+      "linkXpath": "//div[@class='result-game-item-detail']//h3//a/@href",
+      "authorXpath": "//div[@class='result-game-item-detail']//div[@class='result-game-item-info']//p[1]/span[2]/text()",
+      "descXpath": "//div[@class='result-game-item-detail']//p[@class='result-game-item-desc']/text()"
+    },
+    "catalog": {
+      "xpath": "//div[@id=list]//dl//dd",
+      "titleXpath": "//a/text()",
+      "linkXpath": "//a/@href"
+    },
+    "content": {
+      "xpath": "//div[@id='content']/text()"
+    }
+  },
+  {
+    "id": 4,
+    "search": {
+      "charset": "UTF-8",
+      "xpath": "//div[@class='result-item result-game-item']",
+      "coverXpath": "//div[@class='result-game-item-pic']//a//img/@src",
+      "titleXpath": "//div[@class='result-game-item-detail']//h3//a/@title",
+      "linkXpath": "//div[@class='result-game-item-detail']//h3//a/@href",
+      "authorXpath": "//div[@class='result-game-item-detail']//div[@class='result-game-item-info']//p[1]/span[2]/text()",
+      "descXpath": "//div[@class='result-game-item-detail']//p[@class='result-game-item-desc']/text()"
+    },
+    "catalog": {
+      "xpath": "//div[@id=list]//dl//dd",
+      "titleXpath": "//a/text()",
+      "linkXpath": "//a/@href"
+    },
+    "content": {
+      "xpath": "//div[@id='content']/text()"
+    }
+  },
+  {
+    "id": 5,
+    "search": {
+      "charset": "UTF-8",
+      "xpath": "//div[@class='result-item result-game-item']",
+      "coverXpath": "//div[@class='result-game-item-pic']//a//img/@src",
+      "titleXpath": "//div[@class='result-game-item-detail']//h3//a/@title",
+      "linkXpath": "//div[@class='result-game-item-detail']//h3//a/@href",
+      "authorXpath": "//div[@class='result-game-item-detail']//div[@class='result-game-item-info']//p[1]/span[2]/text()",
+      "descXpath": "//div[@class='result-game-item-detail']//p[@class='result-game-item-desc']/text()"
+    },
+    "catalog": {
+      "xpath": "//div[@id=list]//dl//dd",
+      "titleXpath": "//a/text()",
+      "linkXpath": "//a/@href"
+    },
+    "content": {
+      "xpath": "//div[@id='content']/text()"
+    }
+  },
+  {
+    "id": 6,
+    "search": {
+      "charset": "UTF-8",
+      "xpath": "//div[@class='bookbox']",
+      "coverXpath": "/div/div/a/img/@src",
+      "titleXpath": "//div[@class='bookinfo']/h4/a/text()",
+      "linkXpath": "//div[@class='bookinfo']/h4/a/@href",
+      "authorXpath": "//div[@class='bookinfo']/div[@class='author']/text()",
+      "descXpath": "//div[@class='bookinfo']/p/text()"
+    },
+    "catalog": {
+      "xpath": "//div[@class='listmain']/dl/dt[2]/following-sibling::dd",
+      "titleXpath": "/a/text()",
+      "linkXpath": "/a/@href"
+    },
+    "content": {
+      "xpath": "//div[@id='content']/text()"
+    }
+  },
+  {
+    "id": 7,
+    "search": {
+      "charset": "UTF-8",
+      "xpath": "//div[@class='result-item result-game-item']",
+      "coverXpath": "//div[@class='result-game-item-pic']/a/img/@src",
+      "titleXpath": "//div[@class='result-game-item-detail']//h3[@class='result-item-title result-game-item-title']/a/@title",
+      "linkXpath": "//div[@class='result-game-item-pic']/a/@href",
+      "authorXpath": "//div[@class='result-game-item-detail']/div[@class='result-game-item-info']/p[1]/span[2]/text()",
+      "descXpath": "//div[@class='result-game-item-detail']/p[@class='result-game-item-desc']/text()"
+    },
+    "catalog": {
+      "xpath": "//div[@id='main']//dl[@class='chapterlist']/dd/",
+      "titleXpath": "/a/text()",
+      "linkXpath": "/a/@href"
+    },
+    "content": {
+      "xpath": "//div[@id='content']/text()"
+    }
+  },
+  {
+    "id": 8,
+    "search": {
+      "charset": "UTF-8",
+      "xpath": "//div[@class='result-item result-game-item']",
+      "coverXpath": "//div[@class='result-game-item-pic']//a//img/@src",
+      "titleXpath": "//div[@class='result-game-item-detail']//h3//a/@title",
+      "linkXpath": "//div[@class='result-game-item-detail']//h3//a/@href",
+      "authorXpath": "//div[@class='result-game-item-detail']//div[@class='result-game-item-info']//p[1]/span[2]/text()",
+      "descXpath": "//div[@class='result-game-item-detail']//p[@class='result-game-item-desc']/text()"
+    },
+    "catalog": {
+      "xpath": "//div[@id=list]//dl//dd",
+      "titleXpath": "/a/text()",
+      "linkXpath": "/a/@href"
+    },
+    "content": {
+      "xpath": "//div[@id='booktext']/text()"
+    }
+  },
+  {
+    "id": 9,
+    "search": {
+      "charset": "UTF-8",
+      "xpath": "//div[@class='bookbox']",
+      "coverXpath": "/div/div/a/img/@src",
+      "titleXpath": "//div[@class='bookinfo']/h4/a/text()",
+      "linkXpath": "//div[@class='bookinfo']/h4/a/@href",
+      "authorXpath": "//div[@class='bookinfo']/div[@class='author']/text()",
+      "descXpath": "//div[@class='bookinfo']/p/text()"
+    },
+    "catalog": {
+      "xpath": "//div[@class='listmain']/dl/dt[2]/following-sibling::dd",
+      "titleXpath": "/a/text()",
+      "linkXpath": "/a/@href"
+    },
+    "content": {
+      "xpath": "//div[@id='content']/text()"
+    }
+  },
+  {
+    "id": 10,
+    "search": {
+      "charset": "UTF-8",
+      "xpath": "//div[@class='result-item result-game-item']",
+      "coverXpath": "//div[@class='result-game-item-pic']//a//img/@src",
+      "titleXpath": "//div[@class='result-game-item-detail']//h3//a/@title",
+      "linkXpath": "//div[@class='result-game-item-detail']//h3//a/@href",
+      "authorXpath": "//div[@class='result-game-item-detail']//div[@class='result-game-item-info']//p[1]/span[2]/text()",
+      "descXpath": "//div[@class='result-game-item-detail']//p[@class='result-game-item-desc']/text()"
+    },
+    "catalog": {
+      "xpath": "//section[@class=ml_main]//dl//dd",
+      "titleXpath": "//a/text()",
+      "linkXpath": "//a/@href"
+    },
+    "content": {
+      "xpath": "//div[@class='novel']/div[@class='ydleft']/div[@class='yd_text2']/text()"
+    }
+  },
+  {
+    "id": 11,
+    "search": {
+      "charset": "UTF-8",
+      "xpath": "//*[@id='novel-list']/ul/li[position()>1]",
+      "titleXpath": "/div[2]/a/text()",
+      "authorXpath": "/div[4]/text()",
+      "coverXpath": "",
+      "linkXpath": "/div[3]/a/@href",
+      "descXpath": ""
+    },
+    "catalog": {
+      "xpath": "//*[@id='chapters-list']/li/",
+      "titleXpath": "/a/text()",
+      "linkXpath": "/a/@href"
+    },
+    "content": {
+      "xpath": "//*[@id='txtContent']/text()"
+    }
+  },
+  {
+    "id": 12,
+    "search": {
+      "charset": "GB2312",
+      "xpath": "//div[@class='list-lastupdate']/ul/li",
+      "titleXpath": "/span[@class='name']/a/text()",
+      "authorXpath": "/span[@class='other']/text()",
+      "coverXpath": "",
+      "linkXpath": "/span[@class='name']/a/@href",
+      "descXpath": ""
+    },
+    "catalog": {
+      "xpath": "//dl[@class='chapter-list clrfix']/dd",
+      "titleXpath": "/a/text()",
+      "linkXpath": "/a/@href"
+    },
+    "content": {
+      "xpath": "//article//div[@id='content']/text()"
+    }
+  },
+  {
+    "id": 13,
+    "search": {
+      "charset": "",
+      "xpath": "//ul[@class='list_content']",
+      "coverXpath": "",
+      "titleXpath": "//li[@class='cc2']//a/text()",
+      "linkXpath": "//li[@class='cc2']//a/@href",
+      "authorXpath": "//li[@class='cc4']//a/text()",
+      "descXpath": ""
+    },
+    "catalog": {
+      "xpath": "//div[@class='chapter']",
+      "titleXpath": "//a/text()",
+      "linkXpath": "//a/@href"
+    },
+    "content": {
+      "xpath": "//div[@id='content']/text()"
+    }
+  },
+  {
+    "id": 14,
+    "search": {
+      "charset": "UTF-8",
+      "xpath": "//section[@class='lastest']/ul/li[position()>1]",
+      "titleXpath": "/span[2]/a/text()",
+      "authorXpath": "/span[4]/a/@title",
+      "coverXpath": "",
+      "linkXpath": "/span[3]/a/@href",
+      "descXpath": ""
+    },
+    "catalog": {
+      "xpath": "//ul[@class='mulu']/li[1]/following-sibling::li[@class='col1 volumn']/following-sibling::li[@class!='col1 volumn']",
+      "titleXpath": "/a/text()",
+      "linkXpath": "/a/@href"
+    },
+    "content": {
+      "xpath": "//div[@id='content']/text()"
+    }
+  },
+  {
+    "id": 15,
+    "search": {
+      "charset": "UTF-8",
+      "xpath": "/html/body/a",
+      "coverXpath": "",
+      "titleXpath": "text()",
+      "linkXpath": "@href",
+      "authorXpath": "",
+      "descXpath": ""
+    },
+    "catalog": {
+      "xpath": "//div[@class='mqq-content']/ul[@class='novlist2']/li",
+      "titleXpath": "//a/text()",
+      "linkXpath": "//a/@href"
+    },
+    "content": {
+      "xpath": "//div[@class='mqq-content']/text()"
+    }
+  },
+  {
+    "id": 16,
+    "search": {
+      "charset": "GB2312",
+      "xpath": "//*[@id='content']/div[@class='c_row']",
+      "coverXpath": "/div[1]/a/img/@src",
+      "authorXpath": "/div[2]/div[@class='c_tag']/span[2]/text()",
+      "titleXpath": "/div[2]/div[1]/span/a/text()",
+      "descXpath": "/div[2]/div[@class='c_description']/text()",
+
+      "linkXpath": "/div[2]/div[4]/span[2]/a/@href"
+
+    },
+    "catalog": {
+      "xpath": "//*[@id='list']/dl/dd",
+      "titleXpath": "/a/text()",
+      "linkXpath": "/a/@href"
+    },
+    "content": {
+      "xpath": "//div[@id='booktext']/text()"
+    }
+  },
+  {
+    "id": 17,
+    "search": {
+      "charset": "GB2312",
+      "xpath": "//*[@id='content']/table/tbody/tr[position() > 1]",
+      "coverXpath": "",
+      "titleXpath": "/td[1]/a/text()",
+      "linkXpath": "/td[2]/a/@href",
+      "authorXpath": "/td[3]/text()",
+      "descXpath": ""
+    },
+    "catalog": {
+      "xpath": "//div[@class='centent']/ul/li",
+      "titleXpath": "//a/text()",
+      "linkXpath": "//a/@href"
+    },
+    "content": {
+      "xpath": "//body/text()"
+    }
+  }
+]

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_search_bar_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp"
+        android:src="@drawable/ic_common_back" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:background="@drawable/shape_search_bar"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_search_bar_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_search_bar"
+            android:drawablePadding="10dp"
+            android:hint="请输入搜索内容"
+            android:imeOptions="actionSearch"
+            android:maxLines="1"
+            android:paddingBottom="@dimen/app_spacing_2"
+            android:paddingLeft="@dimen/app_spacing_3"
+            android:paddingTop="@dimen/app_spacing_2"
+            android:singleLine="true"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/iv_search_bar_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/app_spacing_1"
+            android:paddingRight="@dimen/app_spacing_2"
+            android:src="@drawable/ic_search_delete" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_search_bar_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/app_spacing_2"
+        android:src="@drawable/ic_search_source_setting" />
+
+    <TextView
+        android:id="@+id/tv_search_bar_search"
+        style="@style/CommonTextSize_14"
+        android:padding="@dimen/app_spacing_2"
+        android:text="搜索"
+        android:textColor="@color/main_text_color" />
+</merge>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/splash" />
+
+    <TextView
+        android:id="@+id/tv_splash_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/shape_splash_skip_btn"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:text="跳过"
+        android:textColor="@android:color/white"
+        android:textSize="12dp" />
+
+</FrameLayout>

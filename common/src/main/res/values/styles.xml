@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="AppTheme.Base" />
+
+    <style name="AppTheme.NoneTranslucent" parent="AppTheme.Base">
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+    <!-- Theme.AppCompat.DayNight.DarkActionBar -->
+    <style name="AppTheme.Base" parent="Theme.AppCompat.DayNight">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/colorWindowBg</item>
+
+        <item name="android:actionMenuTextColor">@android:color/white</item>
+
+        <!-- AppCompatEditText默认状态状态设置底线颜色 -->
+        <item name="colorControlNormal">@color/colorControlNormal</item>
+        <!-- AppCompatEditText选择的底线颜色 -->
+        <item name="colorControlActivated">@color/colorControlActivated</item>
+    </style>
+
+    <style name="Toolbar">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <!--txt size define start-->
+    <style name="CommonTextSize_12">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/txt_size_little</item>
+        <item name="android:textColor">@color/main_text_color</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+
+    <style name="CommonTextSize_14">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/txt_size_normal</item>
+        <item name="android:textColor">@color/main_text_color</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+
+    <style name="CommonTextSize_16">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/txt_size_middle</item>
+        <item name="android:textColor">@color/main_text_color</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="CommonTextSize_18">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/txt_size_large</item>
+        <item name="android:textColor">@color/main_text_color</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="CommonTextSize_20">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/txt_size_xlarge</item>
+        <item name="android:textColor">@color/main_text_color</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!--txt size define end-->
+
+    <style name="HorizontalLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="VerticalLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+</resources>

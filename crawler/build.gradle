@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+
+    buildTypes {
+        release {
+            postprocessing {
+                removeUnusedCode false
+                removeUnusedResources false
+                obfuscate false
+                optimizeCode false
+                proguardFile 'proguard-rules.pro'
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation rootProject.ext.dependencies["support-annotation"]
+    implementation rootProject.ext.dependencies["gson"]
+
+    implementation project(path: ':common')
+
+    implementation 'org.jsoup:jsoup:1.11.1'
+    implementation 'org.apache.commons:commons-lang3:3.3.2'
+}

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_status_bar" />
+
+    <include layout="@layout/common_tool_bar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="搜索历史"
+        android:textColor="@color/second_text_color"
+        android:textSize="12dp" />
+
+    <com.qy.reader.common.widgets.TagGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_search_keyword_bg"
+            android:paddingBottom="@dimen/app_spacing_1"
+            android:paddingLeft="@dimen/app_spacing_2"
+            android:paddingRight="@dimen/app_spacing_2"
+            android:paddingTop="@dimen/app_spacing_1"
+            android:text="大唐荣耀"
+            android:textColor="@color/main_text_color"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_search_keyword_bg"
+            android:paddingBottom="@dimen/app_spacing_1"
+            android:paddingLeft="@dimen/app_spacing_2"
+            android:paddingRight="@dimen/app_spacing_2"
+            android:paddingTop="@dimen/app_spacing_1"
+            android:text="大唐荣耀"
+            android:textColor="@color/main_text_color"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_search_keyword_bg"
+            android:paddingBottom="@dimen/app_spacing_1"
+            android:paddingLeft="@dimen/app_spacing_2"
+            android:paddingRight="@dimen/app_spacing_2"
+            android:paddingTop="@dimen/app_spacing_1"
+            android:text="大唐荣耀"
+            android:textColor="@color/main_text_color"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_search_keyword_bg"
+            android:paddingBottom="@dimen/app_spacing_1"
+            android:paddingLeft="@dimen/app_spacing_2"
+            android:paddingRight="@dimen/app_spacing_2"
+            android:paddingTop="@dimen/app_spacing_1"
+            android:text="大唐荣耀"
+            android:textColor="@color/main_text_color"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_search_keyword_bg"
+            android:paddingBottom="@dimen/app_spacing_1"
+            android:paddingLeft="@dimen/app_spacing_2"
+            android:paddingRight="@dimen/app_spacing_2"
+            android:paddingTop="@dimen/app_spacing_1"
+            android:text="大唐荣耀"
+            android:textColor="@color/main_text_color"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_search_keyword_bg"
+            android:paddingBottom="@dimen/app_spacing_1"
+            android:paddingLeft="@dimen/app_spacing_2"
+            android:paddingRight="@dimen/app_spacing_2"
+            android:paddingTop="@dimen/app_spacing_1"
+            android:text="大唐荣耀"
+            android:textColor="@color/main_text_color"
+            android:textSize="12dp" />
+
+    </com.qy.reader.common.widgets.TagGroup>
+</LinearLayout>
