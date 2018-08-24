@@ -1,5 +1,12 @@
 # CrawlerForReader
 
+Android 本地网络小说爬虫，基于 jsoup 与 xpath，通过模版解析网页。
+
+- [支持书源](#)
+- [模版示例](#)
+- [调用方式](#)
+- [ScreenShot](#)
+
 ## 支持书源
 
 ```java
@@ -31,6 +38,78 @@ public static final SparseArray<Source> SOURCES = new SparseArray<Source>() {
         put(SourceID.XIAOSHUO52, new Source(SourceID.XIAOSHUO52, "小说52", "http://m.xs52.com/search.php?searchkey=%s"));
     }
 };
+```
+
+## 模版示例
+
+例如针对猎文网：
+
+```json
+{
+    "id": 1, //对应书源id
+    "search": { //搜索页解析规则
+      "charset": "UTF-8",
+      "xpath": "//div[@class='result-item result-game-item']",
+      "coverXpath": "//div[@class='result-game-item-pic']//a//img/@src",
+      "titleXpath": "//div[@class='result-game-item-detail']//h3//a/@title",
+      "linkXpath": "//div[@class='result-game-item-detail']//h3//a/@href",
+      "authorXpath": "//div[@class='result-game-item-detail']//div[@class='result-game-item-info']//p[1]/span[2]/text()",
+      "descXpath": "//div[@class='result-game-item-detail']//p[@class='result-game-item-desc']/text()"
+    },
+    "catalog": { //目录列表解析规则
+      "xpath": "//div[@id=list]//dl//dd",
+      "titleXpath": "//a/text()",
+      "linkXpath": "//a/@href"
+    },
+    "content": { //文章内容解析规则
+      "xpath": "//div[@id='content']/text()"
+    }
+  }
+```
+
+## 调用方式
+
+目前虽然请求结果是通过 Callback形式，因为搜多个源是分批返回结果。内部当仍是同步请求，没有做线程调度。
+
+```java
+Crawler.search("你好", new SearchCallback() {
+    @Override
+    public void onResponse(String keyword, List<SearchBook> appendList) {
+    }
+
+    @Override
+    public void onFinish() {
+
+    }
+
+    @Override
+    public void onError(String msg) {
+
+    }
+});
+Crawler.catalog(new SearchBook.SL("https://www.liewen.cc/b/24/24934/", SourceManager.SOURCES.get(1)), new ChapterCallback() {
+    @Override
+    public void onResponse(List<Chapter> chapters) {
+
+    }
+
+    @Override
+    public void onError(String msg) {
+
+    }
+});
+
+Crawler.content(new SearchBook.SL("https://www.liewen.cc/b/24/24934/", SourceManager.SOURCES.get(1)), "/b/24/24934/12212511.html", new ContentCallback() {
+    @Override
+    public void onResponse(String content) {
+
+    }
+
+    @Override
+    public void onError(String msg) {
+
+    }
+});
 ```
 
 ## ScreenShot
