@@ -2,6 +2,8 @@
 
 Android 本地网络小说爬虫，基于 jsoup 与 xpath，通过模版解析网页。
 
+阅读器实现：[https://github.com/smuyyh/BookReader](https://github.com/smuyyh/BookReader)
+
 - [支持书源](#支持书源)
 - [模版示例](#模版示例)
 - [调用方式](#调用方式)
