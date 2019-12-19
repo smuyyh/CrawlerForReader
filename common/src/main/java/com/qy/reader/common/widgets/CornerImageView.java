@@ -19,6 +19,8 @@ import com.qy.reader.common.R;
 
 import java.util.Arrays;
 
+import static android.graphics.Canvas.ALL_SAVE_FLAG;
+
 /**
  * 圆角ImageView
  * <p>
@@ -26,7 +28,6 @@ import java.util.Arrays;
  */
 public class CornerImageView extends AppCompatImageView {
 
-    private static final int LAYER_FLAGS = Canvas.MATRIX_SAVE_FLAG | Canvas.CLIP_SAVE_FLAG | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG | Canvas.FULL_COLOR_LAYER_SAVE_FLAG | Canvas.CLIP_TO_LAYER_SAVE_FLAG;
     public static final int SHAPE_MODE_ROUND_RECT = 1;
     public static final int SHAPE_MODE_CIRCLE = 2;
 
@@ -128,7 +129,7 @@ public class CornerImageView extends AppCompatImageView {
         super.onDraw(canvas);
 
         if (mStrokeWidth > 0 && mStrokeShape != null && mStrokeBitmap != null) {
-            int i = canvas.saveLayer(0, 0, getMeasuredWidth(), getMeasuredHeight(), null, LAYER_FLAGS);
+            int i = canvas.saveLayer(0, 0, getMeasuredWidth(), getMeasuredHeight(), null, ALL_SAVE_FLAG);
             mStrokePaint.setXfermode(null);
             canvas.drawBitmap(mStrokeBitmap, 0, 0, mStrokePaint);
             canvas.translate(mStrokeWidth, mStrokeWidth);
