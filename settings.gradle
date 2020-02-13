@@ -1,1 +1,2 @@
-include ':app', ':common', ':crawler'
+include ':app'
+rootProject.name='novel-android'
