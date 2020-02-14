@@ -1,9 +1,14 @@
 package com.qy.reader.book.read;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
@@ -31,6 +36,8 @@ import java.util.List;
  * Created by yuyuhang on 2018/1/13.
  */
 public class ReadActivity extends BaseActivity implements ReadContract.View {
+
+    public static final int PERMISSION_STORAGE_REQUEST_CODE = 0x001;
 
     private ReadView mReadView;
 
@@ -126,7 +133,37 @@ public class ReadActivity extends BaseActivity implements ReadContract.View {
         }
         currentChapter = chapterIndex + 1;
 
+        String permissionWrite = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+        int storagePermission = ContextCompat.checkSelfPermission(this, permissionWrite);
+        if (storagePermission == PackageManager.PERMISSION_GRANTED) {
+            getChapterContent(chapterIndex);
+        } else {
+            String[] permissions = {permissionWrite};
+            int requestCode = PERMISSION_STORAGE_REQUEST_CODE;
+            ActivityCompat.requestPermissions(this, permissions, requestCode);
+        }
+    }
+
+    private void getChapterContent(int chapterIndex) {
         mPresenter.getChapterContent(mBookNum, mSource, mChapterList.get(chapterIndex));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == PERMISSION_STORAGE_REQUEST_CODE) {
+            boolean grant = true;
+            for (int result : grantResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    grant = false;
+                    break;
+                }
+            }
+            if (grant) {
+                getChapterContent(currentChapter);
+            }
+        }
     }
 
     @Override
@@ -176,7 +213,7 @@ public class ReadActivity extends BaseActivity implements ReadContract.View {
             ReadActivity.this.currentChapter = currentChapter;
             for (int i = currentChapter - 1; i <= mChapterList.size() && i <= currentChapter + 3; i++) {
                 if (i > 0) {
-                    mPresenter.getChapterContent(mBookNum, mSource, mChapterList.get(i - 1));
+                    getChapterContent(i - 1);
                 }
             }
         }
@@ -193,7 +230,7 @@ public class ReadActivity extends BaseActivity implements ReadContract.View {
         public void onChapterLoadFailure(int currentChapter) {
             for (int i = currentChapter - 1; i <= mChapterList.size() && i <= currentChapter + 3; i++) {
                 if (i > 0) {
-                    mPresenter.getChapterContent(mBookNum, mSource, mChapterList.get(i - 1));
+                    getChapterContent(i - 1);
                 }
             }
         }
