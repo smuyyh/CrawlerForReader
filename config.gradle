@@ -1,11 +1,10 @@
 ext {
 
-    android = [compileSdkVersion: 26,
-               buildToolsVersion: "27.0.1",
-               applicationId    : "com.qy.reader",
-               minSdkVersion    : 14,
-               targetSdkVersion : 26,
-               versionCode      : 100,
+    android = [compileSdkVersion: 29,
+               applicationId    : "org.diql.android.novel",
+               minSdkVersion    : 17,
+               targetSdkVersion : 29,
+               versionCode      : 1,
                versionName      : "1.0.0"]
 
     dependencies = ["appcompat-v7"       : "com.android.support:appcompat-v7:27.0.2",

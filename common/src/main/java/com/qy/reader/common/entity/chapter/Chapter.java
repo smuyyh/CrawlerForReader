@@ -14,4 +14,13 @@ public class Chapter implements Serializable {
     public String lastUpdateTime;
 
     public String link;
+
+    @Override
+    public String toString() {
+        return "Chapter{" +
+                "title='" + title + '\'' +
+                ", lastUpdateTime='" + lastUpdateTime + '\'' +
+                ", link='" + link + '\'' +
+                '}';
+    }
 }
