@@ -282,6 +282,10 @@ public class Crawler {
         if (TextUtils.isEmpty(link)) {
             return link;
         }
+        if (link.startsWith("//")) {
+            // 处理 返回值为 "//www.ymxxs.com/book/113/113316/173483732.html" 的这种情况；
+            link = linkWithHost.substring(0, linkWithHost.indexOf("//")) + link;
+        }
         if (link.startsWith("/")) {
             URI original = new URI(linkWithHost);
             URI uri = new URI(original.getScheme(), original.getAuthority(), link, null);
