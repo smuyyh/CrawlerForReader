@@ -1,24 +1,21 @@
 package com.qy.reader.crawler;
 
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.qy.reader.common.entity.source.SourceEnable;
-import com.qy.reader.common.entity.source.SourceID;
-import com.qy.reader.common.utils.SPUtils;
-import com.qy.reader.common.utils.StringUtils;
-import com.qy.reader.crawler.source.callback.ChapterCallback;
-import com.qy.reader.crawler.source.callback.ContentCallback;
+import androidx.annotation.NonNull;
+
 import com.qy.reader.common.entity.book.SearchBook;
-import com.qy.reader.crawler.source.callback.SearchCallback;
 import com.qy.reader.common.entity.chapter.Chapter;
 import com.qy.reader.common.entity.source.Source;
 import com.qy.reader.common.entity.source.SourceConfig;
+import com.qy.reader.common.entity.source.SourceID;
+import com.qy.reader.common.utils.StringUtils;
 import com.qy.reader.crawler.source.SourceManager;
+import com.qy.reader.crawler.source.callback.ChapterCallback;
+import com.qy.reader.crawler.source.callback.ContentCallback;
+import com.qy.reader.crawler.source.callback.SearchCallback;
 import com.qy.reader.crawler.xpath.exception.XpathSyntaxErrorException;
 import com.qy.reader.crawler.xpath.model.JXDocument;
 import com.qy.reader.crawler.xpath.model.JXNode;
@@ -281,6 +278,10 @@ public class Crawler {
     private static String urlVerification(String link, String linkWithHost) throws URISyntaxException {
         if (TextUtils.isEmpty(link)) {
             return link;
+        }
+        if (link.startsWith("//")) {
+            // 处理 返回值为 "//www.ymxxs.com/book/113/113316/173483732.html" 的这种情况；
+            link = linkWithHost.substring(0, linkWithHost.indexOf("//")) + link;
         }
         if (link.startsWith("/")) {
             URI original = new URI(linkWithHost);
