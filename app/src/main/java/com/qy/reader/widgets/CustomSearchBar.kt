@@ -66,6 +66,6 @@ class CustomSearchBar @JvmOverloads constructor(context: Context?, attrs: Attrib
 
         val bundle = Bundle()
         bundle.putString("text", text)
-        Nav.from(context).setExtras(bundle).start("qyreader://searchresult")
+        Nav.from(context).setExtras(bundle).start("novel://searchresult")
     }
 }

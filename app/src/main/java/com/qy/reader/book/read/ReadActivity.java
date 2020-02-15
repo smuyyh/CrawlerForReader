@@ -1,15 +1,10 @@
 package com.qy.reader.book.read;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
@@ -18,7 +13,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.qy.reader.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.qy.reader.common.base.BaseActivity;
 import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.entity.chapter.Chapter;
@@ -28,6 +27,8 @@ import com.qy.reader.common.widgets.Sneaker;
 import com.qy.reader.common.widgets.reader.BookManager;
 import com.qy.reader.common.widgets.reader.OnPageStateChangedListener;
 import com.qy.reader.common.widgets.reader.ReadView;
+
+import org.diql.android.novel.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,22 +1,23 @@
 package com.qy.reader.search.result;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.qy.reader.R;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.qy.reader.common.base.BaseActivity;
 import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.utils.Nav;
 import com.qy.reader.common.widgets.Sneaker;
 import com.qy.reader.crawler.Crawler;
 import com.qy.reader.crawler.source.callback.SearchCallback;
-import com.qy.reader.book.BookInfoActivity;
 import com.qy.reader.support.DividerItemDecoration;
 import com.yuyh.easyadapter.recyclerview.EasyRVAdapter;
+
+import org.diql.android.novel.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +70,7 @@ public class SearchResultActivity extends BaseActivity {
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("search_book", item);
-                Nav.from(SearchResultActivity.this).setExtras(bundle).start("qyreader://bookinfo");
+                Nav.from(SearchResultActivity.this).setExtras(bundle).start("novel://bookinfo");
             }
         });
 

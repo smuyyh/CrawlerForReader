@@ -16,7 +16,7 @@ public class FileUtils {
     public static String createBookRootPath() {
         String bookPath = "";
         if (isSdCardAvailable()) {
-            bookPath = Environment.getExternalStorageDirectory().getPath() + "/qyreader";
+            bookPath = Environment.getExternalStorageDirectory().getPath() + "/novel";
             createDir(bookPath);
         }
         return bookPath;

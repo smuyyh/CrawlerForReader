@@ -3,11 +3,12 @@ package com.qy.reader.book;
 import android.content.Context;
 import android.widget.TextView;
 
-import com.qy.reader.R;
 import com.qy.reader.common.entity.chapter.Chapter;
 import com.qy.reader.common.utils.StringUtils;
 import com.yuyh.easyadapter.recyclerview.EasyRVAdapter;
 import com.yuyh.easyadapter.recyclerview.EasyRVHolder;
+
+import org.diql.android.novel.R;
 
 import java.util.ArrayList;
 import java.util.List;

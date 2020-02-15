@@ -59,10 +59,10 @@ public abstract class BaseTabActivity extends BaseActivity implements View.OnCli
         mTvMine.setOnClickListener(this);
 
         mTabList.clear();
-        mTabList.add(new TAB(mTvHome, "qyreader://home"));
-        mTabList.add(new TAB(mTvSearch, "qyreader://search"));
-        mTabList.add(new TAB(mTvDiscover, "qyreader://discover"));
-        mTabList.add(new TAB(mTvMine, "qyreader://mine"));
+        mTabList.add(new TAB(mTvHome, "novel://home"));
+        mTabList.add(new TAB(mTvSearch, "novel://search"));
+        mTabList.add(new TAB(mTvDiscover, "novel://discover"));
+        mTabList.add(new TAB(mTvMine, "novel://mine"));
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_tab_content, mFragment).commitNowAllowingStateLoss();
     }

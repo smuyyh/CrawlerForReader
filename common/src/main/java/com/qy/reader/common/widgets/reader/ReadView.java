@@ -3,10 +3,11 @@ package com.qy.reader.common.widgets.reader;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.qy.reader.common.entity.chapter.Chapter;
 import com.qy.reader.common.entity.source.SourceID;

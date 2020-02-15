@@ -1,13 +1,13 @@
 package com.qy.reader.search
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.qy.reader.R
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import com.qy.reader.widgets.CustomSearchBar
+import org.diql.android.novel.R
 
 /**
  * Created by xiaoshu on 2018/1/9.

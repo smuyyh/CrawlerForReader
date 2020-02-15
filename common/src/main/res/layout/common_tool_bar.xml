@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/common_toolbar"
         style="@style/Toolbar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
@@ -31,7 +31,7 @@
             android:textColor="#333333"
             android:textSize="17sp" />
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <View
         android:layout_width="match_parent"

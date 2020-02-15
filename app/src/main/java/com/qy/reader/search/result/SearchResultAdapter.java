@@ -9,12 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.qy.reader.R;
 import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.entity.source.Source;
 import com.qy.reader.crawler.source.SourceManager;
 import com.yuyh.easyadapter.recyclerview.EasyRVAdapter;
 import com.yuyh.easyadapter.recyclerview.EasyRVHolder;
+
+import org.diql.android.novel.R;
 
 import java.util.List;
 

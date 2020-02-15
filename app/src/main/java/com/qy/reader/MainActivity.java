@@ -1,8 +1,9 @@
 package com.qy.reader;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.entity.chapter.Chapter;
@@ -11,6 +12,8 @@ import com.qy.reader.crawler.Crawler;
 import com.qy.reader.crawler.source.SourceManager;
 import com.qy.reader.crawler.source.callback.ChapterCallback;
 import com.qy.reader.crawler.source.callback.ContentCallback;
+
+import org.diql.android.novel.R;
 
 import java.util.List;
 

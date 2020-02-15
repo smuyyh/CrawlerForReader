@@ -3,8 +3,9 @@ package com.qy.reader.common.utils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
-import android.support.v4.util.SimpleArrayMap;
+
+import androidx.annotation.NonNull;
+import androidx.collection.SimpleArrayMap;
 
 import com.qy.reader.common.Global;
 

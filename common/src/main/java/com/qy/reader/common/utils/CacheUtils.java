@@ -9,8 +9,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Process;
-import android.support.annotation.NonNull;
-import android.support.v4.util.SimpleArrayMap;
+
+import androidx.annotation.NonNull;
+import androidx.collection.SimpleArrayMap;
 
 import com.qy.reader.common.Global;
 

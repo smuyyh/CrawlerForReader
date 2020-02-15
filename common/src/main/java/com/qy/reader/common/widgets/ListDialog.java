@@ -1,13 +1,13 @@
 package com.qy.reader.common.widgets;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.annotation.Nullable;
 
 import me.drakeet.materialdialog.MaterialDialog;
 

@@ -2,14 +2,16 @@ package com.qy.reader.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
-import com.qy.reader.R;
+import androidx.annotation.Nullable;
+
 import com.qy.reader.common.base.BaseActivity;
 import com.qy.reader.common.utils.Nav;
 import com.qy.reader.common.utils.StatusBarCompat;
+
+import org.diql.android.novel.R;
 
 /**
  * Created by yuyuhang on 2018/1/8.
@@ -46,7 +48,7 @@ public class SplashActivity extends BaseActivity {
     };
 
     private void end() {
-        Nav.from(this).start("qyreader://home");
+        Nav.from(this).start("novel://home");
 
         finish();
     }

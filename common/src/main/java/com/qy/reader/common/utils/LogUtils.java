@@ -5,9 +5,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.IntDef;
-import android.support.annotation.IntRange;
 import android.util.Log;
+
+import androidx.annotation.IntDef;
+import androidx.annotation.IntRange;
 
 import com.qy.reader.common.Global;
 

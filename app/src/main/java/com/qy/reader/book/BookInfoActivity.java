@@ -1,19 +1,18 @@
 package com.qy.reader.book;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
-import com.qy.reader.R;
 import com.qy.reader.common.base.BaseActivity;
 import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.entity.chapter.Chapter;
-import com.qy.reader.common.entity.source.Source;
 import com.qy.reader.common.utils.Nav;
 import com.qy.reader.common.utils.StringUtils;
 import com.qy.reader.common.widgets.ListDialog;
@@ -21,6 +20,8 @@ import com.qy.reader.common.widgets.Sneaker;
 import com.qy.reader.crawler.Crawler;
 import com.qy.reader.crawler.source.callback.ChapterCallback;
 import com.yuyh.easyadapter.recyclerview.EasyRVAdapter;
+
+import org.diql.android.novel.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,7 +106,7 @@ public class BookInfoActivity extends BaseActivity {
                 bundle.putSerializable("chapter_list", mChapterList);
                 bundle.putSerializable("chapter", item);
                 bundle.putSerializable("source", mSourceList.get(mCurrentSourcePosition));
-                Nav.from(mContext).setExtras(bundle).start("qyreader://read");
+                Nav.from(mContext).setExtras(bundle).start("novel://read");
             }
         });
 
