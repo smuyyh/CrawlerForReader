@@ -3,10 +3,11 @@ package com.qy.reader.common.base;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.qy.reader.common.R;
 import com.qy.reader.common.utils.Nav;
