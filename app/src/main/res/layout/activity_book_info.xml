@@ -9,11 +9,11 @@
     <include layout="@layout/common_tool_bar" />
 
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -165,9 +165,9 @@
             </LinearLayout>
 
 
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_search_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -178,6 +178,6 @@
             app:fastScrollVerticalTrackDrawable="@drawable/fast_scroll_line_selector"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>
 
