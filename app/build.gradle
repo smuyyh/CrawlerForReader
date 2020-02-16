@@ -33,13 +33,13 @@ dependencies {
 
     implementation project(path: ':crawler')
 
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.annotation:annotation:1.0.0'
-    implementation "com.google.code.gson:gson:2.8.2"
-    implementation "com.github.bumptech.glide:glide:3.7.0"
-    implementation "com.yuyh.easyadapter:library:1.1.5"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.google.android.material:material:$design_version"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+    implementation "androidx.annotation:annotation:$annotation_version"
+    implementation "com.google.code.gson:gson:$gson_version"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    implementation "com.yuyh.easyadapter:library:$easyadapter_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     testImplementation 'junit:junit:4.12'
