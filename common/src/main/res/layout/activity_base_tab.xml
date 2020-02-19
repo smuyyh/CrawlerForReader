@@ -55,6 +55,34 @@
                 android:textColor="@drawable/selector_tab_text_color"
                 android:textSize="12dp" />
 
+            <TextView
+                android:id="@+id/tv_tab_discover"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/selector_tab_discover"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="发现"
+                android:textColor="@drawable/selector_tab_text_color"
+                android:textSize="12dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tv_tab_mine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/selector_tab_mine"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="个人"
+                android:textColor="@drawable/selector_tab_text_color"
+                android:textSize="12dp"
+                android:visibility="gone"/>
+
         </LinearLayout>
 
     </LinearLayout>

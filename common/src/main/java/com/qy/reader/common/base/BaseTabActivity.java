@@ -27,7 +27,7 @@ public abstract class BaseTabActivity extends BaseActivity implements View.OnCli
 
     protected Fragment mFragment;
 
-    protected TextView mTvHome, mTvSearch;
+    protected TextView mTvHome, mTvSearch, mTvDiscover, mTvMine;
 
     private List<TAB> mTabList = new ArrayList<>();
 
@@ -50,13 +50,19 @@ public abstract class BaseTabActivity extends BaseActivity implements View.OnCli
 
         mTvHome = findViewById(R.id.tv_tab_home);
         mTvSearch = findViewById(R.id.tv_tab_search);
+        mTvDiscover = findViewById(R.id.tv_tab_discover);
+        mTvMine = findViewById(R.id.tv_tab_mine);
 
         mTvHome.setOnClickListener(this);
         mTvSearch.setOnClickListener(this);
+        mTvDiscover.setOnClickListener(this);
+        mTvMine.setOnClickListener(this);
 
         mTabList.clear();
         mTabList.add(new TAB(mTvHome, "novel://home"));
         mTabList.add(new TAB(mTvSearch, "novel://search"));
+        mTabList.add(new TAB(mTvDiscover, "novel://discover"));
+        mTabList.add(new TAB(mTvMine, "novel://mine"));
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_tab_content, mFragment).commitNowAllowingStateLoss();
     }
