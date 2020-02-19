@@ -38,7 +38,7 @@
                 android:drawableTop="@drawable/selector_tab_home"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:text="首页"
+                android:text="@string/book_case"
                 android:textColor="@drawable/selector_tab_text_color"
                 android:textSize="12dp" />
 
@@ -51,7 +51,7 @@
                 android:drawableTop="@drawable/selector_tab_search"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:text="搜索"
+                android:text="@string/search"
                 android:textColor="@drawable/selector_tab_text_color"
                 android:textSize="12dp" />
 
