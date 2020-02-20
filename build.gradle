@@ -4,7 +4,7 @@ buildscript {
     ext {
         compileSdkVersion = 29
         applicationId = 'org.diql.android.novel'
-        minSdkVersion = 17
+        minSdkVersion = 18
         targetSdkVersion = 29
         versionCode = 2
         versionName = "0.1.0"
