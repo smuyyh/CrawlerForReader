@@ -8,11 +8,10 @@
 
     <include layout="@layout/common_tool_bar" />
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_book_case"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#CCCCCC">
-
-    </LinearLayout>
+        android:background="#CCCCCC"/>
 
 </LinearLayout>
