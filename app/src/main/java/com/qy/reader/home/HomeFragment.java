@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.diql.android.novel.R;
 
@@ -24,6 +26,8 @@ public class HomeFragment extends Fragment {
     protected TextView toolbarBack;
     protected TextView toolbarTitle;
     protected Toolbar commonToolbar;
+    protected RecyclerView rvBookCase;
+    protected SwipeRefreshLayout srlBookCase;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +52,21 @@ public class HomeFragment extends Fragment {
         toolbarBack = (TextView) rootView.findViewById(R.id.toolbar_back);
         toolbarTitle = (TextView) rootView.findViewById(R.id.toolbar_title);
         commonToolbar = (Toolbar) rootView.findViewById(R.id.common_toolbar);
+        srlBookCase = (SwipeRefreshLayout) rootView.findViewById(R.id.srl_book_case);
+        rvBookCase = (RecyclerView) rootView.findViewById(R.id.rv_book_case);
 
         toolbarTitle.setText(R.string.book_case);
+
+        srlBookCase.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                srlBookCase.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        srlBookCase.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
     }
 }

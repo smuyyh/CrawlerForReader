@@ -8,10 +8,17 @@
 
     <include layout="@layout/common_tool_bar" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_book_case"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_book_case"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#CCCCCC"/>
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_book_case"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#CCCCCC"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>
