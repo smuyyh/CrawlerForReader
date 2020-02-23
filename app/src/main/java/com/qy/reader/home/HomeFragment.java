@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -68,5 +69,35 @@ public class HomeFragment extends Fragment {
                 }, 1000);
             }
         });
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        rvBookCase.setLayoutManager(layoutManager);
+        rvBookCase.setAdapter(new RecyclerView.Adapter() {
+            @NonNull
+            @Override
+            public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+                View view = inflater.inflate(R.layout.item_book_case, parent, false);
+                return new BookcaseViewHolder(view);
+            }
+
+            @Override
+            public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
+            }
+
+            @Override
+            public int getItemCount() {
+                return 10;
+            }
+        });
+    }
+}
+
+class BookcaseViewHolder extends RecyclerView.ViewHolder {
+
+    public BookcaseViewHolder(@NonNull View itemView) {
+        super(itemView);
     }
 }
