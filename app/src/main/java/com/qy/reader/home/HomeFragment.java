@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.qy.reader.common.widgets.CornerImageView;
+
 import org.diql.android.novel.R;
 
 /**
@@ -97,7 +99,24 @@ public class HomeFragment extends Fragment {
 
 class BookcaseViewHolder extends RecyclerView.ViewHolder {
 
+    protected TextView tvSearchItemSource;
+    protected TextView tvSearchItemDesc;
+    protected TextView tvSearchItemAuthor;
+    protected TextView tvSearchItemTitle;
+    protected CornerImageView ivSearchItemCover;
+    protected View rootView;
+
     public BookcaseViewHolder(@NonNull View itemView) {
         super(itemView);
+        rootView = itemView;
+        initView(itemView);
+    }
+
+    private void initView(View rootView) {
+        ivSearchItemCover = (CornerImageView) rootView.findViewById(R.id.iv_search_item_cover);
+        tvSearchItemTitle = (TextView) rootView.findViewById(R.id.tv_search_item_title);
+        tvSearchItemAuthor = (TextView) rootView.findViewById(R.id.tv_search_item_author);
+        tvSearchItemDesc = (TextView) rootView.findViewById(R.id.tv_search_item_desc);
+        tvSearchItemSource = (TextView) rootView.findViewById(R.id.tv_search_item_source);
     }
 }
