@@ -15,10 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.qy.reader.common.entity.book.BookDetail;
+import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.widgets.CornerImageView;
 
 import org.diql.android.novel.R;
+import org.diql.android.novel.util.ListUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class HomeFragment extends Fragment {
     protected RecyclerView rvBookCase;
     protected SwipeRefreshLayout srlBookCase;
 
-    private List<BookDetail> bookDetailList = new ArrayList<>();
+    private List<SearchBook> dataList = new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,23 +82,23 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         rvBookCase.setLayoutManager(layoutManager);
-        rvBookCase.setAdapter(new RecyclerView.Adapter() {
+        rvBookCase.setAdapter(new RecyclerView.Adapter<BookcaseViewHolder>() {
             @NonNull
             @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public BookcaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 LayoutInflater inflater = LayoutInflater.from(parent.getContext());
                 View view = inflater.inflate(R.layout.item_book_case, parent, false);
                 return new BookcaseViewHolder(view);
             }
 
             @Override
-            public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+            public void onBindViewHolder(@NonNull BookcaseViewHolder holder, int position) {
+                holder.setData(ListUtil.getSafely(dataList, position));
             }
 
             @Override
             public int getItemCount() {
-                return bookDetailList.size();
+                return dataList.size();
             }
         });
     }
@@ -112,6 +113,8 @@ class BookcaseViewHolder extends RecyclerView.ViewHolder {
     protected CornerImageView ivSearchItemCover;
     protected View rootView;
 
+    private SearchBook book;
+
     public BookcaseViewHolder(@NonNull View itemView) {
         super(itemView);
         rootView = itemView;
@@ -124,5 +127,11 @@ class BookcaseViewHolder extends RecyclerView.ViewHolder {
         tvSearchItemAuthor = (TextView) rootView.findViewById(R.id.tv_search_item_author);
         tvSearchItemDesc = (TextView) rootView.findViewById(R.id.tv_search_item_desc);
         tvSearchItemSource = (TextView) rootView.findViewById(R.id.tv_search_item_source);
+    }
+
+    public void setData(SearchBook data) {
+        if (data == null) {
+            return;
+        }
     }
 }
