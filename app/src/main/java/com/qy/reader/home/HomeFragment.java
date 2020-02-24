@@ -19,7 +19,7 @@ import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.widgets.CornerImageView;
 
 import org.diql.android.novel.R;
-import org.diql.android.novel.util.ListUtil;
+import org.diql.android.novel.util.Preconditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +93,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onBindViewHolder(@NonNull BookcaseViewHolder holder, int position) {
-                holder.setData(ListUtil.getSafely(dataList, position));
+                holder.setData(dataList.get(position));
             }
 
             @Override
@@ -129,9 +129,7 @@ class BookcaseViewHolder extends RecyclerView.ViewHolder {
         tvSearchItemSource = (TextView) rootView.findViewById(R.id.tv_search_item_source);
     }
 
-    public void setData(SearchBook data) {
-        if (data == null) {
-            return;
-        }
+    public void setData(@NonNull SearchBook data) {
+        book = Preconditions.checkNotNull(data);
     }
 }
