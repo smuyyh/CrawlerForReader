@@ -35,7 +35,7 @@ public class SplashActivity extends BaseActivity {
                 end();
             }
         });
-
+//
         mTvSkip.postDelayed(runnable, 500);
 
     }

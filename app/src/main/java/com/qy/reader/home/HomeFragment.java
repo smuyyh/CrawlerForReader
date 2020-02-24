@@ -15,9 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.qy.reader.common.entity.book.BookDetail;
 import com.qy.reader.common.widgets.CornerImageView;
 
 import org.diql.android.novel.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yuyuhang on 2018/1/9.
@@ -31,6 +35,8 @@ public class HomeFragment extends Fragment {
     protected Toolbar commonToolbar;
     protected RecyclerView rvBookCase;
     protected SwipeRefreshLayout srlBookCase;
+
+    private List<BookDetail> bookDetailList = new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,7 +97,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public int getItemCount() {
-                return 10;
+                return bookDetailList.size();
             }
         });
     }
