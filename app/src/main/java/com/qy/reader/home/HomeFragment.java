@@ -1,6 +1,8 @@
 package com.qy.reader.home;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.widgets.CornerImageView;
 
@@ -29,6 +32,8 @@ import java.util.List;
  */
 public class HomeFragment extends Fragment {
 
+    private Context context;
+
     protected View rootView;
     protected View commonStatusBar;
     protected TextView toolbarBack;
@@ -42,6 +47,12 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Nullable
@@ -106,30 +117,39 @@ public class HomeFragment extends Fragment {
 
 class BookcaseViewHolder extends RecyclerView.ViewHolder {
 
-    protected TextView tvSearchItemSource;
-    protected TextView tvSearchItemDesc;
-    protected TextView tvSearchItemAuthor;
-    protected TextView tvSearchItemTitle;
-    protected CornerImageView ivSearchItemCover;
+    private Context context;
+    protected TextView tvSource;
+    protected TextView tvDesc;
+    protected TextView tvAuthor;
+    protected TextView tvTitle;
+    protected CornerImageView ivCover;
     protected View rootView;
 
     private SearchBook book;
 
     public BookcaseViewHolder(@NonNull View itemView) {
         super(itemView);
+        context = itemView.getContext();
         rootView = itemView;
         initView(itemView);
     }
 
     private void initView(View rootView) {
-        ivSearchItemCover = (CornerImageView) rootView.findViewById(R.id.iv_search_item_cover);
-        tvSearchItemTitle = (TextView) rootView.findViewById(R.id.tv_search_item_title);
-        tvSearchItemAuthor = (TextView) rootView.findViewById(R.id.tv_search_item_author);
-        tvSearchItemDesc = (TextView) rootView.findViewById(R.id.tv_search_item_desc);
-        tvSearchItemSource = (TextView) rootView.findViewById(R.id.tv_search_item_source);
+        ivCover = (CornerImageView) rootView.findViewById(R.id.iv_search_item_cover);
+        tvTitle = (TextView) rootView.findViewById(R.id.tv_search_item_title);
+        tvAuthor = (TextView) rootView.findViewById(R.id.tv_search_item_author);
+        tvDesc = (TextView) rootView.findViewById(R.id.tv_search_item_desc);
+        tvSource = (TextView) rootView.findViewById(R.id.tv_search_item_source);
+
+        tvDesc.setVisibility(View.INVISIBLE);
+        tvSource.setVisibility(View.INVISIBLE);
     }
 
     public void setData(@NonNull SearchBook data) {
         book = Preconditions.checkNotNull(data);
+
+        tvTitle.setText(book.title);
+        tvAuthor.setText(book.author);
+        Glide.with(context).load(book.cover).into(ivCover);
     }
 }
