@@ -1,7 +1,6 @@
 package com.qy.reader.home;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,8 +18,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.qy.reader.common.entity.book.SearchBook;
+import com.qy.reader.common.entity.source.Source;
+import com.qy.reader.common.entity.source.SourceID;
+import com.qy.reader.common.utils.Nav;
 import com.qy.reader.common.widgets.CornerImageView;
+import com.qy.reader.crawler.source.SourceManager;
 
+import org.diql.android.novel.BuildConfig;
 import org.diql.android.novel.R;
 import org.diql.android.novel.util.Preconditions;
 
@@ -32,7 +36,7 @@ import java.util.List;
  */
 public class HomeFragment extends Fragment {
 
-    private Context context;
+    private static final boolean DEBUG = BuildConfig.DEBUG;
 
     protected View rootView;
     protected View commonStatusBar;
@@ -47,12 +51,20 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        this.context = context;
+        if (DEBUG && savedInstanceState == null) {
+            SearchBook sample = new SearchBook();
+            sample.cover = "https://www.liewen.la/files/article/image/17/17053/17053s.jpg";
+            sample.title = "武道宗师";
+            sample.author = "爱潜水的乌贼";
+            sample.desc = "第一，不要笑书名。第二，不要笑封面。第三，不要笑简介。如果大家上面三句话会心笑了，说明本书风格应该挺适合你们的。在这里，武道不再是虚无缥缈的传说，而是切切实实的传承，经过与科技的对抗后，彻底融入了社会";
+            sample.sources = new ArrayList<>(1);
+            String link = "https://liewen.la/b/17/17053/";
+            Source source = SourceManager.SOURCES.get(SourceID.LIEWEN);
+            SearchBook.SL sl = new SearchBook.SL(link, source);
+            sample.sources.add(sl);
+            dataList.add(sample);
+        }
     }
 
     @Nullable
@@ -93,7 +105,9 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         rvBookCase.setLayoutManager(layoutManager);
-        rvBookCase.setAdapter(new RecyclerView.Adapter<BookcaseViewHolder>() {
+
+        RecyclerView.Adapter<BookcaseViewHolder> adapter = new RecyclerView.Adapter<BookcaseViewHolder>() {
+
             @NonNull
             @Override
             public BookcaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -103,17 +117,20 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onBindViewHolder(@NonNull BookcaseViewHolder holder, int position) {
-                holder.setData(dataList.get(position));
+            public void onBindViewHolder(@NonNull final BookcaseViewHolder holder, int position) {
+                SearchBook data = dataList.get(position);
+                holder.setData(data);
             }
 
             @Override
             public int getItemCount() {
                 return dataList.size();
             }
-        });
+        };
+        rvBookCase.setAdapter(adapter);
     }
 }
+
 
 class BookcaseViewHolder extends RecyclerView.ViewHolder {
 
@@ -132,6 +149,18 @@ class BookcaseViewHolder extends RecyclerView.ViewHolder {
         context = itemView.getContext();
         rootView = itemView;
         initView(itemView);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (book == null) {
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("search_book", book);
+                Nav.from(context).setExtras(bundle).start("novel://bookinfo");
+            }
+        });
     }
 
     private void initView(View rootView) {
