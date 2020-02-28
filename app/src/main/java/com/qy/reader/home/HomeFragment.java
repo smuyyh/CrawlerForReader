@@ -17,9 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.entity.source.Source;
 import com.qy.reader.common.entity.source.SourceID;
+import com.qy.reader.common.utils.AssetsUtils;
 import com.qy.reader.common.utils.Nav;
 import com.qy.reader.common.widgets.CornerImageView;
 import com.qy.reader.crawler.source.SourceManager;
@@ -28,6 +31,7 @@ import org.diql.android.novel.BuildConfig;
 import org.diql.android.novel.R;
 import org.diql.android.novel.util.Preconditions;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +40,7 @@ import java.util.List;
  */
 public class HomeFragment extends Fragment {
 
-    private static final boolean DEBUG = BuildConfig.DEBUG;
-
+    private Context context;
     protected View rootView;
     protected View commonStatusBar;
     protected TextView toolbarBack;
@@ -49,21 +52,20 @@ public class HomeFragment extends Fragment {
     private List<SearchBook> dataList = new ArrayList<>();
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (DEBUG && savedInstanceState == null) {
-            SearchBook sample = new SearchBook();
-            sample.cover = "https://www.liewen.la/files/article/image/17/17053/17053s.jpg";
-            sample.title = "武道宗师";
-            sample.author = "爱潜水的乌贼";
-            sample.desc = "第一，不要笑书名。第二，不要笑封面。第三，不要笑简介。如果大家上面三句话会心笑了，说明本书风格应该挺适合你们的。在这里，武道不再是虚无缥缈的传说，而是切切实实的传承，经过与科技的对抗后，彻底融入了社会";
-            sample.sources = new ArrayList<>(1);
-            String link = "https://liewen.la/b/17/17053/";
-            Source source = SourceManager.SOURCES.get(SourceID.LIEWEN);
-            SearchBook.SL sl = new SearchBook.SL(link, source);
-            sample.sources.add(sl);
-            dataList.add(sample);
+        if (savedInstanceState == null) {
+            Type t = new TypeToken<ArrayList<SearchBook>>() {
+            }.getType();
+            String json = AssetsUtils.readAssetsTxt(context, "default_book_case.json");
+            ArrayList<SearchBook> books = new Gson().fromJson(json, t);
+            dataList.addAll(books);
         }
     }
 
@@ -164,11 +166,11 @@ class BookcaseViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void initView(View rootView) {
-        ivCover = (CornerImageView) rootView.findViewById(R.id.iv_search_item_cover);
-        tvTitle = (TextView) rootView.findViewById(R.id.tv_search_item_title);
-        tvAuthor = (TextView) rootView.findViewById(R.id.tv_search_item_author);
-        tvDesc = (TextView) rootView.findViewById(R.id.tv_search_item_desc);
-        tvSource = (TextView) rootView.findViewById(R.id.tv_search_item_source);
+        ivCover = rootView.findViewById(R.id.iv_search_item_cover);
+        tvTitle = rootView.findViewById(R.id.tv_search_item_title);
+        tvAuthor = rootView.findViewById(R.id.tv_search_item_author);
+        tvDesc = rootView.findViewById(R.id.tv_search_item_desc);
+        tvSource = rootView.findViewById(R.id.tv_search_item_source);
 
         tvDesc.setVisibility(View.INVISIBLE);
         tvSource.setVisibility(View.INVISIBLE);
