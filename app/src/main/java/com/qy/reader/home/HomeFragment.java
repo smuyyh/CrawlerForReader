@@ -20,14 +20,10 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.qy.reader.common.entity.book.SearchBook;
-import com.qy.reader.common.entity.source.Source;
-import com.qy.reader.common.entity.source.SourceID;
 import com.qy.reader.common.utils.AssetsUtils;
 import com.qy.reader.common.utils.Nav;
 import com.qy.reader.common.widgets.CornerImageView;
-import com.qy.reader.crawler.source.SourceManager;
 
-import org.diql.android.novel.BuildConfig;
 import org.diql.android.novel.R;
 import org.diql.android.novel.util.Preconditions;
 
