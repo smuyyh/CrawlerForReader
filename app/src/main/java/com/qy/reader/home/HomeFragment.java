@@ -24,6 +24,7 @@ import com.qy.reader.common.utils.AssetsUtils;
 import com.qy.reader.common.utils.Nav;
 import com.qy.reader.common.widgets.CornerImageView;
 
+import org.diql.android.novel.BookManager;
 import org.diql.android.novel.R;
 import org.diql.android.novel.util.Preconditions;
 
@@ -46,6 +47,7 @@ public class HomeFragment extends Fragment {
     protected SwipeRefreshLayout srlBookCase;
 
     private List<SearchBook> dataList = new ArrayList<>();
+    private BookManager.Callback callback;
 
     @Override
     public void onAttach(Context context) {
@@ -56,13 +58,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState == null) {
-            Type t = new TypeToken<ArrayList<SearchBook>>() {
-            }.getType();
-            String json = AssetsUtils.readAssetsTxt(context, "default_book_case.json");
-            ArrayList<SearchBook> books = new Gson().fromJson(json, t);
-            dataList.addAll(books);
-        }
+        BookManager.getInstance().load(context);
     }
 
     @Nullable
@@ -76,6 +72,16 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(rootView);
+
+        callback = new BookManager.Callback() {
+            @Override
+            public void onBookListLoaded(List<SearchBook> bookList) {
+                dataList.clear();
+                dataList.addAll(bookList);
+                srlBookCase.setRefreshing(false);
+            }
+        };
+        BookManager.getInstance().addCallback(callback);
     }
 
     private void initView(View rootView) {
@@ -91,12 +97,7 @@ public class HomeFragment extends Fragment {
         srlBookCase.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                srlBookCase.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        srlBookCase.setRefreshing(false);
-                    }
-                }, 1000);
+                BookManager.getInstance().load(context);
             }
         });
 
@@ -126,6 +127,18 @@ public class HomeFragment extends Fragment {
             }
         };
         rvBookCase.setAdapter(adapter);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        BookManager.getInstance().load(context);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        BookManager.getInstance().removeCallback(callback);
     }
 }
 
