@@ -32,8 +32,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation 'androidx.annotation:annotation:1.0.0'
-    implementation "com.google.code.gson:gson:2.8.2"
+    implementation "androidx.annotation:annotation:$annotation_version"
+    implementation "com.google.code.gson:gson:$gson_version"
 
     implementation project(path: ':common')
 

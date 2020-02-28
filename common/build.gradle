@@ -31,10 +31,10 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation 'io.reactivex:rxandroid:1.1.0'
-    implementation 'io.reactivex:rxjava:1.1.5'
-    implementation 'com.trello:rxlifecycle:0.3.0'
-    implementation 'com.trello:rxlifecycle-components:0.3.0'
+    implementation "io.reactivex:rxandroid:$rxandroid_version"
+    implementation "io.reactivex:rxjava:$rxjava_version"
+    implementation "com.trello:rxlifecycle:$rxlifecycle_version"
+    implementation "com.trello:rxlifecycle-components:$rxlifecycle_components_version"
     //    https://github.com/drakeet/MaterialDialog
-    implementation 'me.drakeet.materialdialog:library:1.3.1'
+    implementation "me.drakeet.materialdialog:library:$materialdialog_version"
 }
