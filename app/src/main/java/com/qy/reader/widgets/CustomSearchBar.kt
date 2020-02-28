@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.*
 import com.qy.reader.common.R
 import com.qy.reader.common.utils.Nav
+import com.qy.reader.common.utils.ToastUtils
 import com.qy.reader.search.result.SearchResultActivity
 import com.qy.reader.search.source.SourceSettingActivity
 
@@ -52,6 +53,10 @@ class CustomSearchBar @JvmOverloads constructor(context: Context?, attrs: Attrib
         mTvSearch!!.setOnClickListener({ search() })
 
         mIvSource!!.setOnClickListener({
+            val enabled = false
+            if (!enabled)
+                ToastUtils.getSingleToast(org.diql.android.novel.R.string.stop_modified, Toast.LENGTH_SHORT).show();
+                return@setOnClickListener
             val intent = Intent(context, SourceSettingActivity::class.java)
             context?.startActivity(intent)
         })

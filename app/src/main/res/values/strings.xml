@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">novel-android</string>
+    <string name="stop_modified">暂停修改</string>
 </resources>
