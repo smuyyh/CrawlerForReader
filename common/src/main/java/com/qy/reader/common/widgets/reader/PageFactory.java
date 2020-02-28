@@ -29,6 +29,8 @@ import java.io.UnsupportedEncodingException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -75,6 +77,7 @@ public class PageFactory {
     private Bitmap mBgBitmap;
 
     private OnPageStateChangedListener listener;
+    private final Calendar calendar = Calendar.getInstance();
 
     public PageFactory() {
         mNumFontSize = ScreenUtils.dpToPxInt(12);
@@ -286,6 +289,8 @@ public class PageFactory {
                     mScreenHeight - ScreenUtils.dpToPxInt(17), mTitlePaint);
         }
 
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        time = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
         canvas.drawText(time, marginWidth + ScreenUtils.dpToPxInt(25), mScreenHeight - ScreenUtils.dpToPxInt(8), mTitlePaint);
 
         if (chapters == null) {
