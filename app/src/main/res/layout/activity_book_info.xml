@@ -120,6 +120,14 @@
                     android:textSize="@dimen/txt_size_little" />
 
 
+                <Button
+                    android:id="@+id/btn_book_case"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_to_book_case"
+                    android:layout_margin="10dp"
+                    />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/line_line_normal"

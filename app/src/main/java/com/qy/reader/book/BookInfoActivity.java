@@ -21,6 +21,7 @@ import com.qy.reader.crawler.Crawler;
 import com.qy.reader.crawler.source.callback.ChapterCallback;
 import com.yuyh.easyadapter.recyclerview.EasyRVAdapter;
 
+import org.diql.android.novel.BookManager;
 import org.diql.android.novel.R;
 
 import java.util.ArrayList;
@@ -54,6 +55,8 @@ public class BookInfoActivity extends BaseActivity {
     private SearchBook mSearchBook;
 
     private int mCurrentSourcePosition = 0;
+
+    private List<SearchBook> books = new ArrayList<>(0);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,6 +96,35 @@ public class BookInfoActivity extends BaseActivity {
         mTvBookNewestChapter = findViewById(R.id.tv_book_newest_chapter);
         mTvBookSource = findViewById(R.id.tv_book_source);
         mTvBookOrderBy = findViewById(R.id.tv_order_by);
+
+        final TextView btnBookcase = findViewById(R.id.btn_book_case);
+        btnBookcase.setClickable(false);
+        BookManager.getInstance().addCallback(new BookManager.Callback() {
+            @Override
+            public void onBookListLoaded(List<SearchBook> bookList) {
+                if (bookList.contains(mSearchBook)) {
+                    btnBookcase.setText(R.string.remove_from_book_case);
+                } else {
+                    btnBookcase.setText(R.string.add_to_book_case);
+                }
+                books = bookList;
+                BookManager.getInstance().removeCallback(this);
+                btnBookcase.setClickable(true);
+            }
+        });
+        BookManager.getInstance().load(BookInfoActivity.this);
+        btnBookcase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                if (books.contains(mSearchBook)) {
+                    books.remove(mSearchBook);
+                    btnBookcase.setText(R.string.add_to_book_case);
+                } else {
+                    books.add(mSearchBook);
+                    btnBookcase.setText(R.string.remove_from_book_case);
+                }
+            }
+        });
 
         //list
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

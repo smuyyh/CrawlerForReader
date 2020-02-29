@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">novel-android</string>
     <string name="stop_modified">暂停修改</string>
+    <string name="add_to_book_case">加入书架</string>
+    <string name="remove_from_book_case">从书架移除</string>
 </resources>
