@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.qy.reader.App;
 import com.qy.reader.common.base.BaseActivity;
 import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.entity.chapter.Chapter;
@@ -22,6 +23,7 @@ import com.qy.reader.crawler.source.callback.ChapterCallback;
 import com.yuyh.easyadapter.recyclerview.EasyRVAdapter;
 
 import org.diql.android.novel.BookListHelper;
+import org.diql.android.novel.ListObservableOnSubscribe;
 import org.diql.android.novel.R;
 import org.reactivestreams.Subscriber;
 
@@ -40,7 +42,6 @@ import me.drakeet.materialdialog.MaterialDialog;
 /**
  * Created by quezhongsang on 2018/1/13.
  */
-
 public class BookInfoActivity extends BaseActivity {
 
     private RecyclerView mRecyclerView;
@@ -103,32 +104,53 @@ public class BookInfoActivity extends BaseActivity {
 
         final TextView btnBookcase = findViewById(R.id.btn_book_case);
         btnBookcase.setClickable(false);
-//        BookListHelper.getInstance().addCallback(new BookListHelper.Callback() {
-//            @Override
-//            public void onBookListLoaded(List<SearchBook> bookList) {
-//                if (bookList.contains(mSearchBook)) {
-//                    btnBookcase.setText(R.string.remove_from_book_case);
-//                } else {
-//                    btnBookcase.setText(R.string.add_to_book_case);
-//                }
-//                books = bookList;
-//                BookListHelper.getInstance().removeCallback(this);
-//                btnBookcase.setClickable(true);
-//            }
-//        });
-//        BookListHelper.getInstance().load(BookInfoActivity.this);
-//        btnBookcase.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(final View v) {
-//                if (books.contains(mSearchBook)) {
-//                    books.remove(mSearchBook);
-//                    btnBookcase.setText(R.string.add_to_book_case);
-//                } else {
-//                    books.add(mSearchBook);
-//                    btnBookcase.setText(R.string.remove_from_book_case);
-//                }
-//            }
-//        });
+        ObservableOnSubscribe<List<SearchBook>> source = new ListObservableOnSubscribe(this);
+
+        Observable.create(source)
+                .subscribeOn(Schedulers.io())
+                .compose(this.<List<SearchBook>>bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<SearchBook>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<SearchBook> searchBooks) {
+                        if (searchBooks.contains(mSearchBook)) {
+                            btnBookcase.setText(R.string.remove_from_book_case);
+                        } else {
+                            btnBookcase.setText(R.string.add_to_book_case);
+                        }
+                        books = searchBooks;
+                        btnBookcase.setClickable(true);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+        btnBookcase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                if (books.contains(mSearchBook)) {
+                    books.remove(mSearchBook);
+                    btnBookcase.setText(R.string.add_to_book_case);
+                } else {
+                    books.add(mSearchBook);
+                    btnBookcase.setText(R.string.remove_from_book_case);
+                }
+                App.getInstance().setBookList(books);
+            }
+        });
 
         //list
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

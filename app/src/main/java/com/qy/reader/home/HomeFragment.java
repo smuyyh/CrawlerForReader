@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.qy.reader.App;
 import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.utils.Nav;
 import com.qy.reader.common.widgets.CornerImageView;
@@ -76,7 +77,7 @@ public class HomeFragment extends RxFragment {
         initView(rootView);
 
         ObservableOnSubscribe<List<SearchBook>> source = new ListObservableOnSubscribe(context);
-        
+
         Observer<List<SearchBook>> observer = new Observer<List<SearchBook>>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -120,7 +121,14 @@ public class HomeFragment extends RxFragment {
         srlBookCase.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-//                BookListHelper.getInstance().load(context);
+                List<SearchBook> nowList = App.getInstance().getBookList();
+                if (nowList != null) {
+                    dataList.clear();
+                    dataList.addAll(nowList);
+                    adapter.notifyDataSetChanged();
+                    srlBookCase.setRefreshing(false);
+                }
+
             }
         });
 

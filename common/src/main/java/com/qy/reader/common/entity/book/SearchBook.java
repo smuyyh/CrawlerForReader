@@ -1,5 +1,9 @@
 package com.qy.reader.common.entity.book;
 
+import android.text.TextUtils;
+
+import androidx.annotation.Nullable;
+
 import com.qy.reader.common.entity.source.Source;
 
 import java.io.Serializable;
@@ -50,5 +54,21 @@ public class SearchBook implements Serializable{
             this.link = link;
             this.source = source;
         }
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj instanceof SearchBook) {
+            boolean equalsTitle = TextUtils.equals(((SearchBook) obj).title, title);
+            boolean equalsAuthor = TextUtils.equals(((SearchBook) obj).author, author);
+            boolean equals = equalsTitle && equalsAuthor;
+            if (equals) {
+                return true;
+            }
+        }
+        return false;
     }
 }
