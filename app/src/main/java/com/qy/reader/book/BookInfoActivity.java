@@ -1,11 +1,16 @@
 package com.qy.reader.book;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,8 +39,10 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import me.drakeet.materialdialog.MaterialDialog;
 
@@ -141,14 +148,56 @@ public class BookInfoActivity extends BaseActivity {
         btnBookcase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                if (books.contains(mSearchBook)) {
-                    books.remove(mSearchBook);
-                    btnBookcase.setText(R.string.add_to_book_case);
-                } else {
-                    books.add(mSearchBook);
-                    btnBookcase.setText(R.string.remove_from_book_case);
+                String writeExternalStorage = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+                BookInfoActivity context = BookInfoActivity.this;
+                int selfPermission = ContextCompat.checkSelfPermission(context, writeExternalStorage);
+                if (selfPermission != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(context, new String[]{writeExternalStorage}, 2);
+                    return;
                 }
-                App.getInstance().setBookList(books);
+
+                Observable.create(new ObservableOnSubscribe<Boolean>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
+                        boolean contains = books.contains(mSearchBook);
+                        if (contains) {
+                            books.remove(mSearchBook);
+                        } else {
+                            books.add(mSearchBook);
+                        }
+                        emitter.onNext(contains);
+                        new BookListHelper().saveBookList(books);
+                        App.getInstance().setBookList(books);
+                        emitter.onComplete();
+                    }
+                })
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<Boolean>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
+                                btnBookcase.setClickable(false);
+                            }
+
+                            @Override
+                            public void onNext(Boolean aBoolean) {
+                                if (aBoolean) {
+                                    btnBookcase.setText(R.string.add_to_book_case);
+                                } else {
+                                    btnBookcase.setText(R.string.remove_from_book_case);
+                                }
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                btnBookcase.setClickable(true);
+                            }
+
+                            @Override
+                            public void onComplete() {
+                                btnBookcase.setClickable(true);
+                            }
+                        });
             }
         });
 

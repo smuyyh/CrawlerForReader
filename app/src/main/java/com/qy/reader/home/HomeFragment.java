@@ -81,7 +81,6 @@ public class HomeFragment extends RxFragment {
         Observer<List<SearchBook>> observer = new Observer<List<SearchBook>>() {
             @Override
             public void onSubscribe(Disposable d) {
-                srlBookCase.setRefreshing(false);
             }
 
             @Override
@@ -127,8 +126,9 @@ public class HomeFragment extends RxFragment {
                     dataList.addAll(nowList);
                     adapter.notifyDataSetChanged();
                     srlBookCase.setRefreshing(false);
+                } else {
+                    srlBookCase.setRefreshing(false);
                 }
-
             }
         });
 
@@ -159,17 +159,6 @@ public class HomeFragment extends RxFragment {
         };
         rvBookCase.setAdapter(adapter);
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
-
 }
 
 

@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.qy.reader.App;
 import com.qy.reader.common.entity.book.SearchBook;
-import com.qy.reader.home.HomeFragment;
 
 import java.util.List;
 
@@ -14,6 +13,7 @@ import io.reactivex.ObservableOnSubscribe;
 public class ListObservableOnSubscribe implements ObservableOnSubscribe<List<SearchBook>> {
 
     private Context appContext;
+
     public ListObservableOnSubscribe(Context context) {
         this.appContext = context;
     }
@@ -22,7 +22,7 @@ public class ListObservableOnSubscribe implements ObservableOnSubscribe<List<Sea
     public void subscribe(ObservableEmitter<List<SearchBook>> emitter) throws Exception {
         List<SearchBook> books = App.getInstance().getBookList();
         if (books == null) {
-            books = new BookListHelper().loadDefaultBookList(appContext);
+            books = new BookListHelper().loadBookList(appContext);
         }
         emitter.onNext(books);
         emitter.onComplete();
