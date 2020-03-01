@@ -13,7 +13,7 @@ import java.io.File;
  */
 public class BookManager {
 
-    private static BookManager instance;
+    private volatile static BookManager instance;
 
     public static BookManager getInstance() {
         if (instance == null) {
