@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.qy.reader.common.R;
 import com.qy.reader.common.utils.StatusBarCompat;
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 /**
  * Created by yuyuhang on 2018/1/8.

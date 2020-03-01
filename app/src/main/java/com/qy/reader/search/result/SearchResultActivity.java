@@ -18,14 +18,18 @@ import com.qy.reader.support.DividerItemDecoration;
 import com.yuyh.easyadapter.recyclerview.EasyRVAdapter;
 
 import org.diql.android.novel.R;
+import org.reactivestreams.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by yuyuhang on 2018/1/9.
@@ -79,39 +83,34 @@ public class SearchResultActivity extends BaseActivity {
 
     private void search(final String title) {
         mAdapter.setTitle(title);
-        Observable
-                .create(new Observable.OnSubscribe<List<SearchBook>>() {
+
+        ObservableOnSubscribe<List<SearchBook>> source = new ObservableOnSubscribe<List<SearchBook>>() {
+            @Override
+            public void subscribe(final ObservableEmitter<List<SearchBook>> emitter) throws Exception {
+                Crawler.search(title, new SearchCallback() {
                     @Override
-                    public void call(final Subscriber<? super List<SearchBook>> subscriber) {
-                        Crawler.search(title, new SearchCallback() {
-                            @Override
-                            public void onResponse(String keyword, List<SearchBook> appendList) {
-                                subscriber.onNext(appendList);
-                            }
-
-                            @Override
-                            public void onFinish() {
-                                subscriber.onCompleted();
-                            }
-
-                            @Override
-                            public void onError(String msg) {
-                                subscriber.onError(new Throwable(msg));
-                            }
-                        });
+                    public void onResponse(String keyword, List<SearchBook> appendList) {
+                        emitter.onNext(appendList);
                     }
-                })
+
+                    @Override
+                    public void onFinish() {
+                        emitter.onComplete();
+                    }
+
+                    @Override
+                    public void onError(String msg) {
+                        emitter.onError(new Throwable(msg));
+                    }
+                });
+            }
+        };
+        Observable
+                .create(source)
                 .compose(this.<List<SearchBook>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<SearchBook>>() {
-                    @Override
-                    public void onCompleted() {
-                        Sneaker.with(SearchResultActivity.this)
-                                .setTitle("搜索完毕")
-                                .setMessage("共搜索到" + mList.size() + "本书")
-                                .sneakSuccess();
-                    }
+                .subscribe(new Observer<List<SearchBook>>() {
 
                     @Override
                     public void onError(Throwable e) {
@@ -119,6 +118,19 @@ public class SearchResultActivity extends BaseActivity {
                                 .setTitle("搜索失败")
                                 .setMessage(e.getMessage())
                                 .sneakWarning();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Sneaker.with(SearchResultActivity.this)
+                                .setTitle("搜索完毕")
+                                .setMessage("共搜索到" + mList.size() + "本书")
+                                .sneakSuccess();
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        // notice.
                     }
 
                     @Override

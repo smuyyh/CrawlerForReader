@@ -17,18 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.qy.reader.common.entity.book.SearchBook;
-import com.qy.reader.common.utils.AssetsUtils;
 import com.qy.reader.common.utils.Nav;
 import com.qy.reader.common.widgets.CornerImageView;
 
-import org.diql.android.novel.BookManager;
+import org.diql.android.novel.BookListHelper;
 import org.diql.android.novel.R;
 import org.diql.android.novel.util.Preconditions;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +43,6 @@ public class HomeFragment extends Fragment {
     protected SwipeRefreshLayout srlBookCase;
 
     private List<SearchBook> dataList = new ArrayList<>();
-    private BookManager.Callback callback;
 
     @Override
     public void onAttach(Context context) {
@@ -58,7 +53,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BookManager.getInstance().load(context);
     }
 
     @Nullable
@@ -72,16 +66,17 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(rootView);
-
-        callback = new BookManager.Callback() {
-            @Override
-            public void onBookListLoaded(List<SearchBook> bookList) {
-                dataList.clear();
-                dataList.addAll(bookList);
-                srlBookCase.setRefreshing(false);
-            }
-        };
-        BookManager.getInstance().addCallback(callback);
+//
+//        Single
+//        callback = new BookListHelper.Callback() {
+//            @Override
+//            public void onBookListLoaded(List<SearchBook> bookList) {
+//                dataList.clear();
+//                dataList.addAll(bookList);
+//                srlBookCase.setRefreshing(false);
+//            }
+//        };
+//        BookListHelper.getInstance().addCallback(callback);
     }
 
     private void initView(View rootView) {
@@ -97,7 +92,7 @@ public class HomeFragment extends Fragment {
         srlBookCase.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                BookManager.getInstance().load(context);
+//                BookListHelper.getInstance().load(context);
             }
         });
 
@@ -132,13 +127,11 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        BookManager.getInstance().load(context);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        BookManager.getInstance().removeCallback(callback);
     }
 }
 

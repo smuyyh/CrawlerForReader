@@ -21,17 +21,21 @@ import com.qy.reader.crawler.Crawler;
 import com.qy.reader.crawler.source.callback.ChapterCallback;
 import com.yuyh.easyadapter.recyclerview.EasyRVAdapter;
 
-import org.diql.android.novel.BookManager;
+import org.diql.android.novel.BookListHelper;
 import org.diql.android.novel.R;
+import org.reactivestreams.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import me.drakeet.materialdialog.MaterialDialog;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by quezhongsang on 2018/1/13.
@@ -99,32 +103,32 @@ public class BookInfoActivity extends BaseActivity {
 
         final TextView btnBookcase = findViewById(R.id.btn_book_case);
         btnBookcase.setClickable(false);
-        BookManager.getInstance().addCallback(new BookManager.Callback() {
-            @Override
-            public void onBookListLoaded(List<SearchBook> bookList) {
-                if (bookList.contains(mSearchBook)) {
-                    btnBookcase.setText(R.string.remove_from_book_case);
-                } else {
-                    btnBookcase.setText(R.string.add_to_book_case);
-                }
-                books = bookList;
-                BookManager.getInstance().removeCallback(this);
-                btnBookcase.setClickable(true);
-            }
-        });
-        BookManager.getInstance().load(BookInfoActivity.this);
-        btnBookcase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                if (books.contains(mSearchBook)) {
-                    books.remove(mSearchBook);
-                    btnBookcase.setText(R.string.add_to_book_case);
-                } else {
-                    books.add(mSearchBook);
-                    btnBookcase.setText(R.string.remove_from_book_case);
-                }
-            }
-        });
+//        BookListHelper.getInstance().addCallback(new BookListHelper.Callback() {
+//            @Override
+//            public void onBookListLoaded(List<SearchBook> bookList) {
+//                if (bookList.contains(mSearchBook)) {
+//                    btnBookcase.setText(R.string.remove_from_book_case);
+//                } else {
+//                    btnBookcase.setText(R.string.add_to_book_case);
+//                }
+//                books = bookList;
+//                BookListHelper.getInstance().removeCallback(this);
+//                btnBookcase.setClickable(true);
+//            }
+//        });
+//        BookListHelper.getInstance().load(BookInfoActivity.this);
+//        btnBookcase.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(final View v) {
+//                if (books.contains(mSearchBook)) {
+//                    books.remove(mSearchBook);
+//                    btnBookcase.setText(R.string.add_to_book_case);
+//                } else {
+//                    books.add(mSearchBook);
+//                    btnBookcase.setText(R.string.remove_from_book_case);
+//                }
+//            }
+//        });
 
         //list
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -192,14 +196,14 @@ public class BookInfoActivity extends BaseActivity {
         mBookInfoAdapter.clear();
         mTvBookOrderBy.setText("加载中...");
         Observable
-                .create(new Observable.OnSubscribe<List<Chapter>>() {
+                .create(new ObservableOnSubscribe<List<Chapter>>() {
                     @Override
-                    public void call(final Subscriber<? super List<Chapter>> subscriber) {
+                    public void subscribe(final ObservableEmitter<List<Chapter>> subscriber) {
                         Crawler.catalog(sl, new ChapterCallback() {
                             @Override
                             public void onResponse(List<Chapter> chapters) {
                                 subscriber.onNext(chapters);
-                                subscriber.onCompleted();
+                                subscriber.onComplete();
                             }
 
                             @Override
@@ -212,11 +216,7 @@ public class BookInfoActivity extends BaseActivity {
                 .compose(this.<List<Chapter>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<Chapter>>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-
+                .subscribe(new Observer<List<Chapter>>() {
                     @Override
                     public void onError(Throwable e) {
                         Sneaker.with(mContext)
@@ -225,6 +225,16 @@ public class BookInfoActivity extends BaseActivity {
                                 .sneakWarning();
 
                         mTvBookOrderBy.setText("加载失败");
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        //notice.
                     }
 
                     @Override
