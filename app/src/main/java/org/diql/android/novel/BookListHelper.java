@@ -16,7 +16,8 @@ public class BookListHelper {
     public BookListHelper() {
     }
 
-    private ArrayList<SearchBook> loadDefaultBookList(Context context) {
+    public ArrayList<SearchBook> loadDefaultBookList(Context context) {
+        context = context.getApplicationContext();
         Type t = new TypeToken<ArrayList<SearchBook>>() {
         }.getType();
         String fileName = "default_book_case.json";

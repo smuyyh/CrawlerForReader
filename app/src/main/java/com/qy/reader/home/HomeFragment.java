@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -20,18 +19,26 @@ import com.bumptech.glide.Glide;
 import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.utils.Nav;
 import com.qy.reader.common.widgets.CornerImageView;
+import com.trello.rxlifecycle3.components.support.RxFragment;
 
-import org.diql.android.novel.BookListHelper;
+import org.diql.android.novel.ListObservableOnSubscribe;
 import org.diql.android.novel.R;
 import org.diql.android.novel.util.Preconditions;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 /**
  * Created by yuyuhang on 2018/1/9.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends RxFragment {
 
     private Context context;
     protected View rootView;
@@ -43,6 +50,7 @@ public class HomeFragment extends Fragment {
     protected SwipeRefreshLayout srlBookCase;
 
     private List<SearchBook> dataList = new ArrayList<>();
+    private RecyclerView.Adapter<BookcaseViewHolder> adapter;
 
     @Override
     public void onAttach(Context context) {
@@ -66,17 +74,37 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(rootView);
-//
-//        Single
-//        callback = new BookListHelper.Callback() {
-//            @Override
-//            public void onBookListLoaded(List<SearchBook> bookList) {
-//                dataList.clear();
-//                dataList.addAll(bookList);
-//                srlBookCase.setRefreshing(false);
-//            }
-//        };
-//        BookListHelper.getInstance().addCallback(callback);
+
+        ObservableOnSubscribe<List<SearchBook>> source = new ListObservableOnSubscribe(context);
+        
+        Observer<List<SearchBook>> observer = new Observer<List<SearchBook>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                srlBookCase.setRefreshing(false);
+            }
+
+            @Override
+            public void onNext(List<SearchBook> searchBooks) {
+                dataList.clear();
+                dataList.addAll(searchBooks);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                srlBookCase.setRefreshing(false);
+            }
+
+            @Override
+            public void onComplete() {
+                srlBookCase.setRefreshing(false);
+            }
+        };
+        Observable.create(source)
+                .subscribeOn(Schedulers.io())
+                .compose(this.<List<SearchBook>>bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
     }
 
     private void initView(View rootView) {
@@ -100,7 +128,7 @@ public class HomeFragment extends Fragment {
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         rvBookCase.setLayoutManager(layoutManager);
 
-        RecyclerView.Adapter<BookcaseViewHolder> adapter = new RecyclerView.Adapter<BookcaseViewHolder>() {
+        adapter = new RecyclerView.Adapter<BookcaseViewHolder>() {
 
             @NonNull
             @Override
@@ -133,6 +161,7 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
     }
+
 }
 
 
