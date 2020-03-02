@@ -27,6 +27,7 @@ import com.qy.reader.common.widgets.Sneaker;
 import com.qy.reader.common.widgets.reader.BookManager;
 import com.qy.reader.common.widgets.reader.OnPageStateChangedListener;
 import com.qy.reader.common.widgets.reader.ReadView;
+import com.qy.reader.common.widgets.reader.SettingManager;
 
 import org.diql.android.novel.R;
 
@@ -106,6 +107,8 @@ public class ReadActivity extends BaseActivity implements ReadContract.View {
         mRlTopBar.setLayoutParams(params);
 
         showStatusBar();
+
+        SettingManager.setTextSizeSP(22);
     }
 
     private void initChapter() {
