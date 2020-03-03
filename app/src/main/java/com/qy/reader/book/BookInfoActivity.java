@@ -33,6 +33,7 @@ import org.diql.android.novel.R;
 import org.reactivestreams.Subscriber;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -208,9 +209,17 @@ public class BookInfoActivity extends BaseActivity {
         mBookInfoAdapter.setOnItemClickListener(new EasyRVAdapter.OnItemClickListener<Chapter>() {
             @Override
             public void onItemClick(View view, int position, Chapter item) {
+                boolean asc = mBookInfoAdapter.isAsc();
+                ArrayList<Chapter> chapters = null;
+                if (asc) {
+                    chapters = mChapterList;
+                } else {
+                    chapters = new ArrayList<>(mChapterList);
+                    Collections.reverse(chapters);
+                }
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", mSearchBook);
-                bundle.putSerializable("chapter_list", mChapterList);
+                bundle.putSerializable("chapter_list", chapters);
                 bundle.putSerializable("chapter", item);
                 bundle.putSerializable("source", mSourceList.get(mCurrentSourcePosition));
                 Nav.from(mContext).setExtras(bundle).start("novel://read");
