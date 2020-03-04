@@ -1,11 +1,16 @@
 package com.qy.reader.home;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.qy.reader.common.base.BaseActivity;
 import com.qy.reader.common.utils.Nav;
@@ -18,6 +23,7 @@ import org.diql.android.novel.R;
  */
 public class SplashActivity extends BaseActivity {
 
+    private final int requestCode = 1;
     private TextView mTvSkip;
 
     @Override
@@ -35,9 +41,27 @@ public class SplashActivity extends BaseActivity {
                 end();
             }
         });
-//
-        mTvSkip.postDelayed(runnable, 500);
 
+        String writeExternalStorage = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+        int permission = ContextCompat.checkSelfPermission(this, writeExternalStorage);
+        if (permission == PackageManager.PERMISSION_GRANTED) {
+            mTvSkip.postDelayed(runnable, 500);
+        } else {
+            mTvSkip.setVisibility(View.INVISIBLE);
+            ActivityCompat.requestPermissions(this, new String[] {writeExternalStorage}, requestCode);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == this.requestCode) {
+            if (grantResults.length >= 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                end();
+            } else {
+                finish();
+            }
+        }
     }
 
     private Runnable runnable = new Runnable() {
@@ -49,7 +73,6 @@ public class SplashActivity extends BaseActivity {
 
     private void end() {
         Nav.from(this).start("novel://home");
-
         finish();
     }
 
