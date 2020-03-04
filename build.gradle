@@ -38,8 +38,8 @@ ext {
     applicationId = 'org.diql.android.novel'
     minSdkVersion = 18
     targetSdkVersion = 29
-    versionCode = 3
-    versionName = "0.1.1"
+    versionCode = 4
+    versionName = "0.1.2"
 
     // android support libraries
     appcompat_version = '1.0.0'
