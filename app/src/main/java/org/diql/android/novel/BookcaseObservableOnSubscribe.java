@@ -10,11 +10,11 @@ import java.util.List;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 
-public class ListObservableOnSubscribe implements ObservableOnSubscribe<List<SearchBook>> {
+public class BookcaseObservableOnSubscribe implements ObservableOnSubscribe<List<SearchBook>> {
 
     private Context appContext;
 
-    public ListObservableOnSubscribe(Context context) {
+    public BookcaseObservableOnSubscribe(Context context) {
         this.appContext = context;
     }
 

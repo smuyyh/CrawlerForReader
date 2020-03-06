@@ -2,7 +2,6 @@ package com.qy.reader.book;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,9 +27,8 @@ import com.qy.reader.crawler.source.callback.ChapterCallback;
 import com.yuyh.easyadapter.recyclerview.EasyRVAdapter;
 
 import org.diql.android.novel.BookListHelper;
-import org.diql.android.novel.ListObservableOnSubscribe;
+import org.diql.android.novel.BookcaseObservableOnSubscribe;
 import org.diql.android.novel.R;
-import org.reactivestreams.Subscriber;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,10 +38,8 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import me.drakeet.materialdialog.MaterialDialog;
 
@@ -112,7 +108,7 @@ public class BookInfoActivity extends BaseActivity {
 
         final TextView btnBookcase = findViewById(R.id.btn_book_case);
         btnBookcase.setClickable(false);
-        ObservableOnSubscribe<List<SearchBook>> source = new ListObservableOnSubscribe(this);
+        ObservableOnSubscribe<List<SearchBook>> source = new BookcaseObservableOnSubscribe(this);
 
         Observable.create(source)
                 .subscribeOn(Schedulers.io())

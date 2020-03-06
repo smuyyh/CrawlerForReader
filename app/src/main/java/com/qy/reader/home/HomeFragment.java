@@ -22,7 +22,7 @@ import com.qy.reader.common.utils.Nav;
 import com.qy.reader.common.widgets.CornerImageView;
 import com.trello.rxlifecycle3.components.support.RxFragment;
 
-import org.diql.android.novel.ListObservableOnSubscribe;
+import org.diql.android.novel.BookcaseObservableOnSubscribe;
 import org.diql.android.novel.R;
 import org.diql.android.novel.util.Preconditions;
 
@@ -76,7 +76,7 @@ public class HomeFragment extends RxFragment {
         super.onViewCreated(view, savedInstanceState);
         initView(rootView);
 
-        ObservableOnSubscribe<List<SearchBook>> source = new ListObservableOnSubscribe(context);
+        ObservableOnSubscribe<List<SearchBook>> source = new BookcaseObservableOnSubscribe(context);
 
         Observer<List<SearchBook>> observer = new Observer<List<SearchBook>>() {
             @Override
