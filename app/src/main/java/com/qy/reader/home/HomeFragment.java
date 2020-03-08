@@ -20,6 +20,7 @@ import com.qy.reader.App;
 import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.utils.Nav;
 import com.qy.reader.common.widgets.CornerImageView;
+import com.qy.reader.support.DividerItemDecoration;
 import com.trello.rxlifecycle3.components.support.RxFragment;
 
 import org.diql.android.novel.BookcaseObservableOnSubscribe;
@@ -135,6 +136,7 @@ public class HomeFragment extends RxFragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         rvBookCase.setLayoutManager(layoutManager);
+        rvBookCase.addItemDecoration(new DividerItemDecoration());
 
         adapter = new RecyclerView.Adapter<BookcaseViewHolder>() {
 
