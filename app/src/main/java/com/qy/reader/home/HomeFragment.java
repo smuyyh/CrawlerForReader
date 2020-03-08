@@ -159,6 +159,17 @@ public class HomeFragment extends RxFragment {
         };
         rvBookCase.setAdapter(adapter);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        List<SearchBook> bookList = App.getInstance().getBookList();
+        if (bookList != null && !dataList.equals(bookList)) {
+            dataList.clear();
+            dataList.addAll(bookList);
+            adapter.notifyDataSetChanged();
+        }
+    }
 }
 
 
