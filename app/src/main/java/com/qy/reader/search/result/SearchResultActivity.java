@@ -18,7 +18,8 @@ import com.qy.reader.support.DividerItemDecoration;
 import com.yuyh.easyadapter.recyclerview.EasyRVAdapter;
 
 import org.diql.android.novel.R;
-import org.reactivestreams.Subscriber;
+import org.diql.android.novel.SearchHistoryHelper;
+import org.diql.android.novel.SearchHistoryObservable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -158,6 +159,39 @@ public class SearchResultActivity extends BaseActivity {
                         }
 
                         mAdapter.notifyDataSetChanged();
+                    }
+                });
+
+        updateSearchHistory(title);
+    }
+
+    private void updateSearchHistory(final String title) {
+        Observable.create(new SearchHistoryObservable())
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(new Observer<List<String>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<String> strings) {
+                        if (strings.contains(title)) {
+                            strings.remove(title);
+                        }
+                        strings.add(0, title);
+                        new SearchHistoryHelper().saveSearchHistory(strings);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }

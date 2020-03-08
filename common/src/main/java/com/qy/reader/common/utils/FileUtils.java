@@ -2,6 +2,8 @@ package com.qy.reader.common.utils;
 
 import android.os.Environment;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 
 /**
@@ -71,5 +73,21 @@ public class FileUtils {
             e.printStackTrace();
         }
         return "";
+    }
+
+
+    /**
+     * 获取应用储存文件.
+     * @param fileName
+     * @return
+     */
+    public static File getAppStorageFile(String fileName) {
+        String path = FileUtils.createBookRootPath() + File.separator
+                + fileName;
+        File file = new File(path);
+        if (!file.exists()) {
+            FileUtils.createFile(file);
+        }
+        return file;
     }
 }

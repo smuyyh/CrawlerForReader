@@ -16,14 +16,15 @@
         android:text="搜索历史"
         android:textColor="@color/second_text_color"
         android:textSize="12dp"
-        android:visibility="invisible"/>
+        android:visibility="visible"/>
 
     <com.qy.reader.common.widgets.TagGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <TextView
+            android:id="@+id/tv_history_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_search_keyword_bg"
@@ -45,7 +46,8 @@
             android:paddingTop="@dimen/app_spacing_1"
             android:text="大唐荣耀"
             android:textColor="@color/main_text_color"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:visibility="invisible"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,7 +59,8 @@
             android:paddingTop="@dimen/app_spacing_1"
             android:text="大唐荣耀"
             android:textColor="@color/main_text_color"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:visibility="invisible"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,7 +72,8 @@
             android:paddingTop="@dimen/app_spacing_1"
             android:text="大唐荣耀"
             android:textColor="@color/main_text_color"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:visibility="invisible"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,7 +85,8 @@
             android:paddingTop="@dimen/app_spacing_1"
             android:text="大唐荣耀"
             android:textColor="@color/main_text_color"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:visibility="invisible"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -93,7 +98,8 @@
             android:paddingTop="@dimen/app_spacing_1"
             android:text="大唐荣耀"
             android:textColor="@color/main_text_color"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:visibility="invisible"/>
 
     </com.qy.reader.common.widgets.TagGroup>
 </LinearLayout>
