@@ -211,7 +211,6 @@ class BookcaseViewHolder extends RecyclerView.ViewHolder {
         tvDesc = rootView.findViewById(R.id.tv_search_item_desc);
         tvSource = rootView.findViewById(R.id.tv_search_item_source);
 
-        tvDesc.setVisibility(View.INVISIBLE);
         tvSource.setVisibility(View.INVISIBLE);
     }
 
@@ -220,6 +219,7 @@ class BookcaseViewHolder extends RecyclerView.ViewHolder {
 
         tvTitle.setText(book.title);
         tvAuthor.setText(book.author);
+        tvDesc.setText(book.desc);
         Glide.with(context).load(book.cover).into(ivCover);
     }
 }
