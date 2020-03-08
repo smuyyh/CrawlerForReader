@@ -160,7 +160,7 @@ public class BookInfoActivity extends BaseActivity {
                         if (contains) {
                             books.remove(mSearchBook);
                         } else {
-                            books.add(mSearchBook);
+                            books.add(0, mSearchBook);
                         }
                         emitter.onNext(contains);
                         new BookListHelper().saveBookList(books);
