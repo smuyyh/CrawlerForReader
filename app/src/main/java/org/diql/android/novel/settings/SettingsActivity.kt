@@ -18,7 +18,7 @@ class SettingsActivity : BaseActivity() {
     }
 
     override fun getToolbarTitle(): String {
-        return getString(R.string.settings)
+        return getString(R.string.title_activity_settings)
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {

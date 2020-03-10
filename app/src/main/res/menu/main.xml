@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/action_settings"
-        android:title="@string/settings"
+        android:title="@string/menu_settings_title"
         />
+
+    <item android:id="@+id/action_about"
+        android:title="@string/menu_about_title"
+        />
+
 </menu>

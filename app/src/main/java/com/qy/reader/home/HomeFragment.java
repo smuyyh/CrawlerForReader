@@ -29,6 +29,7 @@ import com.qy.reader.support.DividerItemDecoration;
 import com.trello.rxlifecycle3.components.support.RxFragment;
 
 import org.diql.android.novel.BookcaseObservableOnSubscribe;
+import org.diql.android.novel.BuildConfig;
 import org.diql.android.novel.R;
 import org.diql.android.novel.settings.SettingsActivity;
 import org.diql.android.novel.util.Preconditions;
@@ -42,6 +43,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import me.drakeet.materialdialog.MaterialDialog;
 
 /**
  * Created by yuyuhang on 2018/1/9.
@@ -189,8 +191,17 @@ public class HomeFragment extends RxFragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.action_settings) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.action_settings) {
             startActivity(new Intent(context, SettingsActivity.class));
+            return true;
+        } else if (itemId == R.id.action_about) {
+            MaterialDialog dialog = new MaterialDialog(context);
+            dialog.setCanceledOnTouchOutside(true);
+            dialog.setTitle(R.string.menu_about_title);
+            String msg = getString(R.string.about_content, BuildConfig.VERSION_NAME);
+            dialog.setMessage(msg);
+            dialog.show();
             return true;
         }
         return super.onOptionsItemSelected(item);
