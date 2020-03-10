@@ -9,11 +9,10 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import com.qy.reader.common.R
 import com.qy.reader.common.utils.Nav
 import com.qy.reader.common.utils.ToastUtils
-import com.qy.reader.search.result.SearchResultActivity
 import com.qy.reader.search.source.SourceSettingActivity
+import org.diql.android.novel.R
 
 
 /**
@@ -38,9 +37,9 @@ class CustomSearchBar @JvmOverloads constructor(context: Context?, attrs: Attrib
         mIvSource = contentView.findViewById<View>(R.id.iv_search_bar_source) as ImageView
         gravity = Gravity.CENTER_VERTICAL
         orientation = HORIZONTAL
-        layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
 
-        mEtSearch!!.setOnKeyListener(View.OnKeyListener { _, _, event ->
+        mEtSearch!!.setOnKeyListener(OnKeyListener { _, _, event ->
             if (event.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 search()
                 return@OnKeyListener true
@@ -53,10 +52,6 @@ class CustomSearchBar @JvmOverloads constructor(context: Context?, attrs: Attrib
         mTvSearch!!.setOnClickListener({ search() })
 
         mIvSource!!.setOnClickListener({
-            val enabled = false
-            if (!enabled)
-                ToastUtils.getSingleToast(org.diql.android.novel.R.string.stop_modified, Toast.LENGTH_SHORT).show();
-                return@setOnClickListener
             val intent = Intent(context, SourceSettingActivity::class.java)
             context?.startActivity(intent)
         })

@@ -51,7 +51,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/app_spacing_2"
-        android:src="@drawable/ic_search_source_setting" />
+        android:src="@drawable/ic_search_source_setting"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/tv_search_bar_search"
