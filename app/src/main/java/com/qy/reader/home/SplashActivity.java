@@ -1,7 +1,6 @@
 package com.qy.reader.home;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +23,7 @@ import org.diql.android.novel.R;
 public class SplashActivity extends BaseActivity {
 
     private final int requestCode = 1;
+    private final int delayMillis = 500;
     private TextView mTvSkip;
 
     @Override
@@ -45,7 +45,7 @@ public class SplashActivity extends BaseActivity {
         String writeExternalStorage = Manifest.permission.WRITE_EXTERNAL_STORAGE;
         int permission = ContextCompat.checkSelfPermission(this, writeExternalStorage);
         if (permission == PackageManager.PERMISSION_GRANTED) {
-            mTvSkip.postDelayed(runnable, 500);
+            mTvSkip.postDelayed(runnable, delayMillis);
         } else {
             mTvSkip.setVisibility(View.INVISIBLE);
             ActivityCompat.requestPermissions(this, new String[] {writeExternalStorage}, requestCode);
