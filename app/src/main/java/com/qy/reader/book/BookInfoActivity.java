@@ -1,6 +1,7 @@
 package com.qy.reader.book;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -269,7 +271,10 @@ public class BookInfoActivity extends BaseActivity {
         }
         mTvBookSource.setText(getSourceStr());
 
-        mBookInfoAdapter.clear(false);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this) ;
+        boolean asc = prefs.getBoolean(getString(R.string.pref_key_chapters_asc), true);
+        mBookInfoAdapter.clear(asc);
+
         mTvBookOrderBy.setText("加载中...");
         Observable
                 .create(new ObservableOnSubscribe<List<Chapter>>() {

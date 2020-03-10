@@ -2,14 +2,19 @@ package com.qy.reader.home;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +30,7 @@ import com.trello.rxlifecycle3.components.support.RxFragment;
 
 import org.diql.android.novel.BookcaseObservableOnSubscribe;
 import org.diql.android.novel.R;
+import org.diql.android.novel.settings.SettingsActivity;
 import org.diql.android.novel.util.Preconditions;
 
 import java.util.ArrayList;
@@ -58,6 +64,7 @@ public class HomeFragment extends RxFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -76,6 +83,9 @@ public class HomeFragment extends RxFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(rootView);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(commonToolbar);
+        activity.getSupportActionBar().setTitle(null);
 
         ObservableOnSubscribe<List<SearchBook>> source = new BookcaseObservableOnSubscribe(context);
 
@@ -110,9 +120,8 @@ public class HomeFragment extends RxFragment {
 
     private void initView(View rootView) {
         commonStatusBar = (View) rootView.findViewById(R.id.common_status_bar);
-        toolbarBack = (TextView) rootView.findViewById(R.id.toolbar_back);
-        toolbarTitle = (TextView) rootView.findViewById(R.id.toolbar_title);
         commonToolbar = (Toolbar) rootView.findViewById(R.id.common_toolbar);
+        toolbarTitle = rootView.findViewById(R.id.toolbar_title);
         srlBookCase = (SwipeRefreshLayout) rootView.findViewById(R.id.srl_book_case);
         rvBookCase = (RecyclerView) rootView.findViewById(R.id.rv_book_case);
 
@@ -171,6 +180,20 @@ public class HomeFragment extends RxFragment {
             dataList.addAll(bookList);
             adapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.main, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_settings) {
+            startActivity(new Intent(context, SettingsActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

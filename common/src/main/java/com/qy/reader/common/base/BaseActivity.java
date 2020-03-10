@@ -2,13 +2,13 @@ package com.qy.reader.common.base;
 
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.qy.reader.common.R;
 import com.qy.reader.common.utils.StatusBarCompat;

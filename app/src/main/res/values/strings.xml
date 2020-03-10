@@ -3,4 +3,17 @@
     <string name="stop_modified">暂停修改</string>
     <string name="add_to_book_case">加入书架</string>
     <string name="remove_from_book_case">从书架移除</string>
+    <string name="settings">设置</string>
+    <string name="title_activity_settings">设置</string>
+
+    <!-- Preference Titles -->
+    <string name="settings_header">设置</string>
+
+    <!-- Settings Preferences -->
+    <string name="chapters_asc_title">章节默认排序方式</string>
+    <string name="chapters_asc_on">章节默认以正序显示</string>
+    <string name="chapters_asc_off">章节默认以倒序显示</string>
+
+    <!-- Preference Key -->
+    <string name="pref_key_chapters_asc">chapters_asc</string>
 </resources>

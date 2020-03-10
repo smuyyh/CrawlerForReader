@@ -1,0 +1,14 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/settings_header">
+
+        <SwitchPreferenceCompat
+            app:key="@string/pref_key_chapters_asc"
+            app:summaryOff="@string/chapters_asc_off"
+            app:summaryOn="@string/chapters_asc_on"
+            app:defaultValue="true"
+            app:title="@string/chapters_asc_title" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

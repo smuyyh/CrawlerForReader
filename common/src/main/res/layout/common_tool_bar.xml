@@ -7,9 +7,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/common_toolbar"
-        style="@style/Toolbar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        style="@style/Toolbar">
 
         <TextView
             android:id="@+id/toolbar_back"
