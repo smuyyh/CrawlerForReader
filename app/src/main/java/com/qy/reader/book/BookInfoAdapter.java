@@ -18,6 +18,9 @@ import java.util.List;
  */
 public class BookInfoAdapter extends EasyRVAdapter<Chapter> {
 
+    /**
+     * 章节是否为正序;
+     */
     private boolean mIsAsc = true;
 
     public BookInfoAdapter(Context context, List<Chapter> list) {
@@ -67,7 +70,11 @@ public class BookInfoAdapter extends EasyRVAdapter<Chapter> {
 
     @Override
     public void clear() {
-        mIsAsc = true;
+        clear(true);
+    }
+
+    public void clear(boolean asc) {
+        mIsAsc = asc;
         super.clear();
     }
 }

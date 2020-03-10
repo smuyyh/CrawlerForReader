@@ -269,7 +269,7 @@ public class BookInfoActivity extends BaseActivity {
         }
         mTvBookSource.setText(getSourceStr());
 
-        mBookInfoAdapter.clear();
+        mBookInfoAdapter.clear(false);
         mTvBookOrderBy.setText("加载中...");
         Observable
                 .create(new ObservableOnSubscribe<List<Chapter>>() {
@@ -318,20 +318,22 @@ public class BookInfoActivity extends BaseActivity {
                         if (chapters == null || chapters.isEmpty()) {
                             return;
                         }
-                        mBookInfoAdapter.addAll(chapters);
 
                         //set  最新章节
                         Chapter lastChapter = chapters.get(chapters.size() - 1);
                         if (lastChapter != null) {
-                            mTvBookNewestChapter.setText("最新章节：" + StringUtils.getStr(lastChapter.title));
+                            String text = "最新章节：" + StringUtils.getStr(lastChapter.title);
+                            mTvBookNewestChapter.setText(text);
                         }
 
                         //set 排序名字
                         if (mBookInfoAdapter.isAsc()) {
                             mTvBookOrderBy.setText(mStrAsc);
                         } else {
+                            Collections.reverse(chapters);
                             mTvBookOrderBy.setText(mStrDesc);
                         }
+                        mBookInfoAdapter.addAll(chapters);
                     }
                 });
     }
