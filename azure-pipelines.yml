@@ -13,7 +13,7 @@ steps:
 - task: Gradle@2
   inputs:
     workingDirectory: 'novel\novel_android\'
-    gradleWrapperFile: 'gradlew'
+    gradleWrapperFile: 'novel\novel_android\gradlew'
     gradleOptions: '-Xmx3072m'
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
