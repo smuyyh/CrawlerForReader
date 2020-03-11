@@ -22,7 +22,7 @@ import org.diql.android.novel.SearchHistoryObservable
 class SearchFragment : Fragment() {
 
     private lateinit var toolBar: Toolbar
-    private lateinit var historyView : TextView
+    private lateinit var historyView: TextView
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val contentView = inflater.inflate(R.layout.fragment_search, container, false)
         toolBar = contentView.findViewById<View>(R.id.common_toolbar) as Toolbar
@@ -31,7 +31,7 @@ class SearchFragment : Fragment() {
         toolBar.addView(mSearchBar)
 
         historyView = contentView.findViewById(R.id.tv_history_0) as TextView
-       return contentView
+        return contentView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,7 +51,12 @@ class SearchFragment : Fragment() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(Consumer {
-                    historyView.text = it[0]
+                    if (it.size > 0) {
+                        historyView.visibility = View.VISIBLE
+                        historyView.text = it[0]
+                    } else {
+                        historyView.visibility = View.GONE
+                    }
                 })
                 .subscribe();
     }
