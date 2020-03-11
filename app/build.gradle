@@ -40,6 +40,15 @@ android {
     testOptions {
         unitTests.includeAndroidResources = true
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def name = rootProject.name
+            def version = defaultConfig.versionName
+            def buildType = variant.buildType.name
+            outputFileName = "${name}-v${version}-${buildType}.apk"
+        }
+    }
 }
 
 dependencies {
