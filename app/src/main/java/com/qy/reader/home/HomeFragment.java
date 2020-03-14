@@ -31,6 +31,7 @@ import com.trello.rxlifecycle3.components.support.RxFragment;
 import org.diql.android.novel.BookcaseObservableOnSubscribe;
 import org.diql.android.novel.BuildConfig;
 import org.diql.android.novel.R;
+import org.diql.android.novel.VersionActivity;
 import org.diql.android.novel.settings.SettingsActivity;
 import org.diql.android.novel.util.Preconditions;
 
@@ -202,6 +203,9 @@ public class HomeFragment extends RxFragment {
             String msg = getString(R.string.about_content, BuildConfig.VERSION_NAME);
             dialog.setMessage(msg);
             dialog.show();
+            return true;
+        } else if (itemId == R.id.action_version) {
+            VersionActivity.start(context);
             return true;
         }
         return super.onOptionsItemSelected(item);
