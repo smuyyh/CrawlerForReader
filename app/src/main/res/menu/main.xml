@@ -10,4 +10,8 @@
         android:title="@string/menu_about_title"
         />
 
+    <item android:id="@+id/action_version"
+        android:title="@string/menu_version_title"
+        />
+
 </menu>
