@@ -147,14 +147,6 @@ public class BookInfoActivity extends BaseActivity {
         btnBookcase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                String writeExternalStorage = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-                BookInfoActivity context = BookInfoActivity.this;
-                int selfPermission = ContextCompat.checkSelfPermission(context, writeExternalStorage);
-                if (selfPermission != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(context, new String[]{writeExternalStorage}, 2);
-                    return;
-                }
-
                 Observable.create(new ObservableOnSubscribe<Boolean>() {
                     @Override
                     public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {

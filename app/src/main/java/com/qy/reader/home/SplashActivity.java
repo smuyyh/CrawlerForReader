@@ -22,7 +22,6 @@ import org.diql.android.novel.R;
  */
 public class SplashActivity extends BaseActivity {
 
-    private final int requestCode = 1;
     private final int delayMillis = 500;
     private TextView mTvSkip;
 
@@ -42,26 +41,7 @@ public class SplashActivity extends BaseActivity {
             }
         });
 
-        String writeExternalStorage = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-        int permission = ContextCompat.checkSelfPermission(this, writeExternalStorage);
-        if (permission == PackageManager.PERMISSION_GRANTED) {
-            mTvSkip.postDelayed(runnable, delayMillis);
-        } else {
-            mTvSkip.setVisibility(View.INVISIBLE);
-            ActivityCompat.requestPermissions(this, new String[] {writeExternalStorage}, requestCode);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == this.requestCode) {
-            if (grantResults.length >= 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                end();
-            } else {
-                finish();
-            }
-        }
+        mTvSkip.postDelayed(runnable, delayMillis);
     }
 
     private Runnable runnable = new Runnable() {

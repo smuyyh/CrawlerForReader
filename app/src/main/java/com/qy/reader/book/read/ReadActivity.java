@@ -39,8 +39,6 @@ import java.util.List;
  */
 public class ReadActivity extends BaseActivity implements ReadContract.View {
 
-    public static final int PERMISSION_STORAGE_REQUEST_CODE = 0x001;
-
     private ReadView mReadView;
 
     private RelativeLayout mRlTopBar;
@@ -137,37 +135,11 @@ public class ReadActivity extends BaseActivity implements ReadContract.View {
         }
         currentChapter = chapterIndex + 1;
 
-        String permissionWrite = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-        int storagePermission = ContextCompat.checkSelfPermission(this, permissionWrite);
-        if (storagePermission == PackageManager.PERMISSION_GRANTED) {
-            getChapterContent(chapterIndex);
-        } else {
-            String[] permissions = {permissionWrite};
-            int requestCode = PERMISSION_STORAGE_REQUEST_CODE;
-            ActivityCompat.requestPermissions(this, permissions, requestCode);
-        }
+        getChapterContent(chapterIndex);
     }
 
     private void getChapterContent(int chapterIndex) {
         mPresenter.getChapterContent(mBookNum, mSource, mChapterList.get(chapterIndex));
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == PERMISSION_STORAGE_REQUEST_CODE) {
-            boolean grant = true;
-            for (int result : grantResults) {
-                if (result != PackageManager.PERMISSION_GRANTED) {
-                    grant = false;
-                    break;
-                }
-            }
-            if (grant) {
-                getChapterContent(currentChapter);
-            }
-        }
     }
 
     @Override
