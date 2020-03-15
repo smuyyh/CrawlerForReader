@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.qy.reader.common.Global;
 import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.utils.AssetsUtils;
 import com.qy.reader.common.utils.FileIOUtils;
@@ -55,6 +56,6 @@ public class BookListHelper {
 
     public File getBookListFile() {
         String fileName = "bookcase";
-        return FileUtils.getAppStorageFile(fileName);
+        return FileUtils.getAppStorageFile(Global.getApplication(), fileName);
     }
 }

@@ -2,6 +2,7 @@ package com.qy.reader.common.widgets.reader;
 
 import android.text.TextUtils;
 
+import com.qy.reader.common.Global;
 import com.qy.reader.common.entity.source.SourceID;
 import com.qy.reader.common.utils.FileIOUtils;
 import com.qy.reader.common.utils.FileUtils;
@@ -37,7 +38,7 @@ public class BookManager {
     }
 
     public File getContentFile(@SourceID int sourceId, String bookNum, String chapterName) {
-        String path = FileUtils.createBookRootPath() + File.separator
+        String path = FileUtils.createBookRootPath(Global.getApplication()) + File.separator
                 + sourceId + File.separator
                 + bookNum + File.separator + chapterName;
         File file = new File(path);

@@ -1,6 +1,10 @@
 package com.qy.reader.common.utils;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Environment;
+
+import androidx.core.os.EnvironmentCompat;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -15,10 +19,15 @@ public class FileUtils {
         return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
     }
 
-    public static String createBookRootPath() {
+    public static String createBookRootPath(Context context) {
+        context = context.getApplicationContext();
         String bookPath = "";
+        File externalDir = null;
         if (isSdCardAvailable()) {
-            bookPath = Environment.getExternalStorageDirectory().getPath() + "/novel";
+            externalDir = context.getExternalFilesDir(null);
+        }
+        if (externalDir != null) {
+            bookPath = externalDir.getPath() + "/novel";
             createDir(bookPath);
         }
         return bookPath;
@@ -78,11 +87,12 @@ public class FileUtils {
 
     /**
      * 获取应用储存文件.
+     *
      * @param fileName
      * @return
      */
-    public static File getAppStorageFile(String fileName) {
-        String path = FileUtils.createBookRootPath() + File.separator
+    public static File getAppStorageFile(Context context, String fileName) {
+        String path = FileUtils.createBookRootPath(context) + File.separator
                 + fileName;
         File file = new File(path);
         if (!file.exists()) {

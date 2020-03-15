@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.qy.reader.common.Global;
 import com.qy.reader.common.utils.FileIOUtils;
 import com.qy.reader.common.utils.FileUtils;
 
@@ -50,6 +51,6 @@ public class SearchHistoryHelper {
 
     private File getSearchHistoryFile() {
         String fileName = "search_history";
-        return FileUtils.getAppStorageFile(fileName);
+        return FileUtils.getAppStorageFile(Global.getApplication(), fileName);
     }
 }
