@@ -30,7 +30,7 @@ public class BookManager {
         if (!TextUtils.isEmpty(title)) {
             result.append(title.trim());
         }
-        result.append("||");
+        result.append("-");
         if (!TextUtils.isEmpty(author)) {
             result.append(author.trim());
         }
