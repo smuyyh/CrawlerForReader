@@ -164,9 +164,7 @@ public class ReadActivity extends BaseActivity implements ReadContract.View {
         visible(mRlTopBar, mLLBottomBar);
         mRlTopBar.startAnimation(showReadBarAnim);
         mLLBottomBar.startAnimation(showReadBarAnim);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
     private void toggleReadBar() {
