@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
+    android:background="@android:color/white"
     android:padding="@dimen/app_spacing_3">
 
     <com.qy.reader.common.widgets.CornerImageView
