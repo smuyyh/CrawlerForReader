@@ -17,7 +17,7 @@
             android:id="@+id/rv_book_case"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#CCCCCC"/>
+            />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
