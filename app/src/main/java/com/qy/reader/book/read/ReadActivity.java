@@ -202,7 +202,8 @@ public class ReadActivity extends BaseActivity implements ReadContract.View {
 
         @Override
         public void onChapterLoadFailure(int currentChapter) {
-            for (int i = currentChapter - 1; i <= mChapterList.size() && i <= currentChapter + 3; i++) {
+            int size = mChapterList.size();
+            for (int i = currentChapter - 1; i <= size && i <= currentChapter + 3; i++) {
                 if (i > 0) {
                     getChapterContent(i - 1);
                 }
