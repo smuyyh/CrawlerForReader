@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.diql.android.novel">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,7 +21,8 @@
             android:label="@string/title_activity_settings" />
         <activity
             android:name="com.qy.reader.home.SplashActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
