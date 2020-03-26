@@ -43,9 +43,18 @@ public class PageFactory {
     private int mVisibleHeight, mVisibleWidth;
     private int marginHeight, marginWidth;
 
-    private int mFontSize, mNumFontSize;
+    /**
+     * title size;
+     */
+    private int mNumFontSize;
+
+    /**
+     * content size;
+     */
+    private int mFontSize;
 
     private int mTextColor;
+
     private int mPageLineCount;
     private int mLineSpace;
 
@@ -77,6 +86,16 @@ public class PageFactory {
     private Bitmap batteryBitmap;
     private Bitmap mBgBitmap;
 
+    /**
+     * background color.
+     */
+    private final int mBgColor = Color.parseColor("#d4edc6");
+
+    /**
+     * 绘制最底部部分时距离底部的距离;
+     */
+    private final int mTopToBottom = ScreenUtils.dpToPxInt(8);
+
     private OnPageStateChangedListener listener;
     private final Calendar calendar = Calendar.getInstance();
 
@@ -98,7 +117,8 @@ public class PageFactory {
         mScreenWidth = ScreenUtils.getScreenWidth();
         mScreenHeight = ScreenUtils.getScreenHeight();
 
-        mVisibleHeight = mScreenHeight - (marginHeight << 1) - (mNumFontSize << 1) - (mLineSpace << 1);
+        // 绘制情况：从上到下依次为 title, content, time;
+        mVisibleHeight = mScreenHeight - (marginHeight << 1) - (mNumFontSize << 1) - (mLineSpace << 1) - mTopToBottom;
         mVisibleWidth = mScreenWidth - (marginWidth << 1);
     }
 
@@ -281,7 +301,7 @@ public class PageFactory {
         if (mBgBitmap != null) {
             canvas.drawBitmap(mBgBitmap, 0, 0, mTextPaint);
         } else {
-            canvas.drawColor(Color.parseColor("#d4edc6"));
+            canvas.drawColor(mBgColor);
         }
 
         // 绘制底部电量时间等
@@ -294,7 +314,9 @@ public class PageFactory {
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
         time = String.format(Locale.PRC,"%02d:%02d", hour, minute);
-        canvas.drawText(time, marginWidth + ScreenUtils.dpToPxInt(25), mScreenHeight - ScreenUtils.dpToPxInt(8), mTitlePaint);
+        int timeX = marginWidth + ScreenUtils.dpToPxInt(25);
+        int timeY = mScreenHeight - mTopToBottom;
+        canvas.drawText(time, timeX, timeY, mTitlePaint);
 
         if (chapters == null) {
             return;
@@ -435,7 +457,7 @@ public class PageFactory {
             }
 
             // 6. 绘制进度
-            canvas.drawText(pageProgress, mScreenWidth - marginWidth - mTitlePaint.measureText(pageProgress), mScreenHeight - ScreenUtils.dpToPxInt(8), mTitlePaint);
+            canvas.drawText(pageProgress, mScreenWidth - marginWidth - mTitlePaint.measureText(pageProgress), mScreenHeight - mTopToBottom, mTitlePaint);
         } catch (Exception e) {
             e.printStackTrace();
         }
