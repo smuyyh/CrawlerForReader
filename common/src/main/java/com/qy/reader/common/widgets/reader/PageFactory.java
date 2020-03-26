@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by yuyuhang on 2018/1/11.
@@ -290,7 +291,9 @@ public class PageFactory {
         }
 
         calendar.setTimeInMillis(System.currentTimeMillis());
-        time = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        time = String.format(Locale.PRC,"%02d:%02d", hour, minute);
         canvas.drawText(time, marginWidth + ScreenUtils.dpToPxInt(25), mScreenHeight - ScreenUtils.dpToPxInt(8), mTitlePaint);
 
         if (chapters == null) {
