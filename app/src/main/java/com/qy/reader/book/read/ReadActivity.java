@@ -1,28 +1,18 @@
 package com.qy.reader.book.read;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.qy.reader.common.base.BaseActivity;
 import com.qy.reader.common.entity.book.SearchBook;
 import com.qy.reader.common.entity.chapter.Chapter;
-import com.qy.reader.common.utils.ScreenUtils;
-import com.qy.reader.common.utils.StatusBarCompat;
 import com.qy.reader.common.widgets.Sneaker;
 import com.qy.reader.common.widgets.reader.BookManager;
 import com.qy.reader.common.widgets.reader.OnPageStateChangedListener;
@@ -57,7 +47,7 @@ public class ReadActivity extends BaseActivity implements ReadContract.View {
 
     @Override
     public boolean enableStatusBarCompat() {
-        return false;
+        return true;
     }
 
     @Override
@@ -75,8 +65,6 @@ public class ReadActivity extends BaseActivity implements ReadContract.View {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        StatusBarCompat.compat(this, ContextCompat.getColor(this, R.color.colorReadBar));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read);
 
@@ -99,12 +87,6 @@ public class ReadActivity extends BaseActivity implements ReadContract.View {
         mReadView.setOnPageStateChangedListener(new PagerListener());
         mRlTopBar = findViewById(R.id.rl_book_read_top);
         mLLBottomBar = findViewById(R.id.ll_book_read_bottom);
-
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mRlTopBar.getLayoutParams();
-        params.topMargin = ScreenUtils.getStatusBarHeight(this);
-        mRlTopBar.setLayoutParams(params);
-
-        showStatusBar();
 
         SettingManager.setTextSizeSP(22);
     }
@@ -152,19 +134,15 @@ public class ReadActivity extends BaseActivity implements ReadContract.View {
     }
 
     private void hideReadBar() {
-        hideStatusBar();
         gone(mRlTopBar, mLLBottomBar);
         mRlTopBar.startAnimation(hideReadBarAnim);
         mLLBottomBar.startAnimation(hideReadBarAnim);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
     }
 
     private void showReadBar() {
-        showStatusBar();
         visible(mRlTopBar, mLLBottomBar);
         mRlTopBar.startAnimation(showReadBarAnim);
         mLLBottomBar.startAnimation(showReadBarAnim);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
     private void toggleReadBar() {
