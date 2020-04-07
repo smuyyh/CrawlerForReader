@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -117,6 +118,11 @@ public class PageFactory {
         mScreenWidth = ScreenUtils.getScreenWidth();
         mScreenHeight = ScreenUtils.getScreenHeight();
 
+        boolean cutout = ScreenUtils.getCutout() != null;
+        if (!cutout) {
+            // 非刘海屏情况;
+            mScreenHeight -= ScreenUtils.getStatusBarHeight(Global.getApplication());
+        }
         // 绘制情况：从上到下依次为 title, content, time;
         mVisibleHeight = mScreenHeight - (marginHeight << 1) - (mNumFontSize << 1) - (mLineSpace << 1) - mTopToBottom;
         mVisibleWidth = mScreenWidth - (marginWidth << 1);

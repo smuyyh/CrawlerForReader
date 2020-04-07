@@ -2,6 +2,7 @@ package com.qy.reader.common.utils;
 
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -10,9 +11,11 @@ import android.os.Build;
 import android.provider.Settings;
 import android.util.TypedValue;
 import android.view.Display;
+import android.view.DisplayCutout;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.qy.reader.common.Global;
@@ -247,5 +250,24 @@ public class ScreenUtils {
         }
 
         return size;
+    }
+
+    /**
+     * 屏幕是否存在刘海;
+     * @return
+     */
+    @Nullable
+    public static DisplayCutout getCutout() {
+        Application application = Global.getApplication();
+        WindowManager windowManager = (WindowManager) application.getSystemService(Context.WINDOW_SERVICE);
+        if (windowManager == null) {
+            return null;
+        }
+        Display display = windowManager.getDefaultDisplay();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            return display.getCutout();
+        }
+
+        return null;
     }
 }
