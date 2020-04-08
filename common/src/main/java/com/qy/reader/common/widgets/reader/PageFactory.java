@@ -254,7 +254,7 @@ public class PageFactory {
                 paraSpace += (mLineSpace / 2);
                 mPageLineCount = (mVisibleHeight - paraSpace) / (mFontSize + mLineSpace);
             }
-            // 最后如果有空白航，可能出现一个空白页，剔除
+            // 最后如果有空白行，可能出现一个空白页，剔除
             if (lines < 1 && locations.size() > 1) {
                 locations.remove(locations.size() - 1);
             }
