@@ -33,7 +33,7 @@ public class SourceManager {
      */
     public static final SparseArray<Source> SOURCES = new SparseArray<Source>() {
         {
-            put(SourceID.LIEWEN, new Source(SourceID.LIEWEN, "猎文网", "https://liewen.la/search.php?q=%s"));
+            put(SourceID.LIEWEN, new Source(SourceID.LIEWEN, "猎文网", "https://www.liewen.la/search.php?q=%s"));
             put(SourceID.CHINESE81, new Source(SourceID.CHINESE81, "八一中文网", "https://www.zwdu.com/search.php?keyword=%s"));
             put(SourceID.ZHUISHU, new Source(SourceID.ZHUISHU, "追书网", "https://www.zhuishu.tw/search.aspx?keyword=%s"));
             put(SourceID.BIQUG, new Source(SourceID.BIQUG, "笔趣阁", "http://zhannei.baidu.com/cse/search?s=1393206249994657467&q=%s"));
