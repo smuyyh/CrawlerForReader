@@ -2,16 +2,21 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-def keystorePropertiesFile = rootProject.file("keystore.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-
 android {
     signingConfigs {
         debug {
             storeFile file('../debug.keystore')
         }
         release {
+            def configName = "keyst1ore.properties"
+            def keystorePropertiesFile = rootProject.file(configName)
+            if (!keystorePropertiesFile.exists()) {
+                logger.log(LogLevel.ERROR, "$configName is not exists.")
+                return
+            }
+            def keystoreProperties = new Properties()
+            keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
             storeFile file(keystoreProperties['storeFile'])
