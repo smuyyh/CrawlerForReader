@@ -1,5 +1,9 @@
 # CrawlerForReader
 
+BookReader is being sponsored by the following tool; please help to support us by taking a look and signing up to a free trial
+
+<a href="https://tracking.gitads.io/?repo=BookReader"> <img src="https://images.gitads.io/BookReader" alt="GitAds"/></a>
+
 Android 本地网络小说爬虫，基于 jsoup 与 xpath，通过模版解析网页。
 
 阅读器实现：[https://github.com/smuyyh/BookReader](https://github.com/smuyyh/BookReader)
